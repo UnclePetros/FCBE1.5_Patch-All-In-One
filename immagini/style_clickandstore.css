@@ -1,0 +1,403 @@
+div#main3cols{
+	width: 100%;
+	text-align: center;
+	min-width: 900px;
+}
+
+div#messages{
+	float:left;
+	margin-left:10px;
+	margin-top:7px;
+	padding:3px;
+	min-width:310px;
+	text-align:center;
+}
+
+div#block {
+	display:block;
+	font-weight: bold;
+	font-size: 0.9em;
+	line-height: 22px;
+	height: 22px;
+	border: 1px solid #c3c3c3;
+	color: #000000;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+	margin: 5px 5px 5px 5px;
+	background-repeat: no-repeat;
+	background-position: left;
+	background-color: #E1DEFF;.box-simple{
+	border: 1px solid #c3c3c3;
+	background-color: #FFFFFF;
+	color: #000000;
+	padding: 0px 0px 0px 0px;
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+}
+}
+
+div#block:hover {
+	display:block;
+	font-weight: bold;	
+	border: 1px solid #c3c3c3;
+	background-color: #c3c3c3;
+	color: #000000;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+	margin: 5px 5px 5px 5px;
+	
+}
+
+div#portieri {
+	border: 1px solid #c3c3c3;
+	background-color: #FFFFFF;
+	color: #000000;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+	margin: 5px 5px 5px 5px;
+}
+
+div#difensori {
+	border: 1px solid #c3c3c3;
+	background-color: #FFFFFF;
+	color: #000000;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+	margin: 5px 5px 5px 5px;
+}
+
+div#centrocampisti {
+	border: 1px solid #c3c3c3;
+	background-color: #FFFFFF;
+	color: #000000;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+	margin: 5px 5px 5px 5px;
+}
+
+
+div#attaccanti {
+	border: 1px solid #c3c3c3;
+	background-color: #FFFFFF;
+	color: #000000;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+	margin: 5px 5px 5px 5px;
+}
+
+div#gestionePorta {
+	background-color: #FFFFFF;
+	color: #000000;
+	margin-top: 10px;
+}
+
+div .clear { clear: both;}
+
+div .header {
+	background-color: #c3c3c3;
+	font-weight: bold;
+	height: 22px;
+	line-height: 22px;
+	border-bottom: 1px solid #AAAAAA;
+}
+
+div .header2 {
+	background-color: #2E2EFE;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+div#campetto {
+	margin-left: auto;
+	margin-right: auto;
+	width: 500px;
+	height: 400px;
+	background-color: #0DBF00;
+}
+
+div#block a:link{
+	display:block;
+	color: blu;
+	height: 22px;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+
+div#block a:visited{
+	display:block;
+	color: blu;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+
+div#block a:active{
+	display:block;
+	color: blu;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+
+div#block a:hover{
+	display:block;
+	color: blu;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+
+div#cessioni {
+	float: left;
+	width: 25%;
+}
+
+div#acquisti {
+	float: left;
+	width: 25%;
+}
+
+div#gestione_cambi {
+	float: left;
+	width: 47%;
+	margin: 0px 10px 0px 10px;
+}
+
+div#acquistiDesiderati {
+	min-width: 200px;
+	width: 100%;
+	margin: auto;
+	border: 1px solid #c3c3c3;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+div#cessioniDesiderate {
+	min-width: 200px;
+	width: 100%;
+	margin: auto;
+	border: 1px solid #c3c3c3;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+div#portieriFuoriRosa {
+	min-width: 200px;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	/*border: 1px solid #c3c3c3;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);*/
+}
+
+div#portieriInRosa {
+	min-width: 200px;
+	width: 100%;
+	margin: 5px 1px 5px 1px;
+	/*border: 1px solid #c3c3c3;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);*/
+}
+
+div.numeriSegnaposto {
+	float: left;
+	margin-left: 7px;
+	margin-top: 0px;
+	color: red;
+	font-weight: bold;
+}
+
+div.numeriSegnaposto2 {
+	float: left;
+	margin-left: 3px;
+	margin-top: 0px;
+	color: red;
+	font-weight: bold;
+}
+
+img.floatRight {
+	float: right;
+	cursor: pointer;
+	margin: 2px;
+}
+
+img.floatLeft {
+	float: left;
+	margin-top: 3px;
+}
+
+div#campo{
+	width: 440px;
+	height:606px;
+	border: 1px solid #AAA;
+	background: url('campo_high.jpg');
+	box-shadow: 5px 5px 5px #CCCCCC;
+}
+
+div#blockrow {
+	display:block;
+	font-weight: bold;
+	font-size: 0.9em;
+	line-height: 25px;
+	height: 25px;
+	color: #000000;
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+	background-repeat: no-repeat;
+	background-position: left;
+	/*background-color: #E1DEFF;*/
+}
+
+div#blockrow:hover {
+	display:block;
+	font-weight: bold;	
+	background-color: #c3c3c3;
+	color: #000000;
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+	
+}
+
+div#blockrow a:link{
+	display:block;
+	color: blu;
+	height: 22px;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+	outline: none;
+}
+
+div#blockrow a:visited{
+	display:block;
+	color: blu;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+
+div#blockrow a:active{
+	display:block;
+	color: blu;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+
+div#blockrow a:hover{
+	display:block;
+	color: blu;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+
+div#row {
+	font-weight: bold;
+	font-size: 1em;
+	line-height: 25px;
+	height: 25px;
+	border: 1px solid #c3c3c3;
+	color: #000000;
+	box-shadow: 0 1px 1px rgb(0, 0, 0);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	/* Border Radius Style */
+    border-radius: 5px;
+    /* Mozilla Firefox Extension*/
+    -moz-border-radius: 5px;
+	margin: 5px 5px 5px 5px;
+	background-repeat: no-repeat;
+	background-position: left;
+	background-color: #E1DEFF;
+}
+
+div#row:hover {
+	background-color: #c3c3c3;
+}
+
+div.avatar {
+	width: 95px;
+	height: 83px;
+	background: url('avatar2.png');
+	background-repeat: no-repeat;
+	background-position: center top;
+	display: block;
+}
+
+div.img_avatar {
+	width: 90px;
+	height: 58px;
+}
+
+div.nome_avatar_clean {
+	border: 1px dashed #666666;
+	width:90px;
+	height:20px;
+}
+
+div.nome_avatar {
+	border: 1px solid #CCC;
+	width:90px;
+	height:20px;
+	background-color: #D6E1FF;
+	background-repeat: no-repeat;
+	box-shadow: 2px 2px 2px #666;
+	opacity: 0.7; 
+}
+
+div.nome_avatar_clean_panc {
+	border: 1px dashed #666666;
+	width:90px;
+	height:20px;
+}
+
+div.nome_avatar_panc {
+	border: 1px solid #CCC;
+	width:90px;
+	height:20px;
+	background-color: #D6E1FF;
+	background-repeat: no-repeat;
+	box-shadow: 2px 2px 2px #666;
+	opacity: 0.7; 
+}
+
+div#panchina {
+	background: url('panchina_high.png') repeat-y;
+	height: 200px;
+}
+
+img{
+	border: 0;
+}

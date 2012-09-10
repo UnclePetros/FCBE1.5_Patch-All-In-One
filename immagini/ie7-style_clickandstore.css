@@ -1,0 +1,12 @@
+img.floatRight {
+	float: right;
+	margin: 2px;
+	margin-top: -18px; /* fix to move up ie7 right floated images */	
+	border: 0px;
+}
+
+img.floatLeft {
+	float: left;
+	margin-top: 3px;
+}
+

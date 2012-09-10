@@ -1,0 +1,26 @@
+PATCH ALL-IN-ONE Ver 2.0 su 1.6 rev.231
+
+Prima di cominciare, fate sempre un backup dei vostri dati e del vostro sito!
+
+Decomprimenre il file zip della patch, e sovrascrivere il contenuto a quello attuale del vostro script.
+
+Aprire il file dati_gen.php, presente nella cartella dati del vostro script, e sovrascrivere con quanto segue la corrispondente sezione del file:
+
+######################## PATCH ALL-IN-ONE ##################################
+$sfondo_tab						=	'#FFFFFF';
+$sfondo_tab1						=	'#FFFFFF';
+$sfondo_tab2						=	'042e7b';
+$sfondo_tab3						=	'#B2C7E9';
+$bgtabtitolari					=	'#FCE0E0';
+$bgtabpanchinari					=	'#FBC8C8';
+$colore_riga_alt					=	'#DDDDDD';
+$carattere_tipo					=	'Tahoma';
+$carattere_size					=	'15px';
+$carattere_colore				=	'#000000';
+$carattere_colore_chiaro			=	'#18045C';
+######################## PATCH ALL-IN-ONE ##################################
+
+Buon divertimento!
+
+Saluti
+UnclePetros

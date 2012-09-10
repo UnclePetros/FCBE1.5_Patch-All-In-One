@@ -1,0 +1,147 @@
+#PATCH ALL-IN-ONE Ver. 2.9#
+* Sistemata la gestione panchina fissa
+
+#PATCH ALL-IN-ONE Ver. 2.8#
+* Corretto bug su identificazione tipo di sostituzione per schema
+
+#PATCH ALL-IN-ONE Ver. 2.7#
+* Aggiunta gestione sostituzioni per schema nella pagina di "Gestione Formazione"
+* Corretto bug su chiusura file formazione dopo salvataggio
+
+#PATCH ALL-IN-ONE Ver. 2.6#
+* risolto bug visualizzazione shoutbox in "Bacheca"
+
+#PATCH ALL-IN-ONE Ver. 2.5#
+* integrata la patch "Gestione rapida formazioni"
+* aggiunto logica per la gestine del timeout su chiamate a siti, nei file squadra.php, gestione_formazione.php e a_gestione.php
+* risolto problema con ridimensionamento pagina mercato in Chrome
+* risolto bug con posizionamento sezione "TOP 11 di giornata"
+
+#PATCH ALL-IN-ONE Ver. 2.4#
+* Aggiunta la chat "Shoutbox" in bacheca
+* Corretto bug su "Calendario Serie A" in menù laterale
+
+#PATCH ALL-IN-ONE Ver. 2.3#
+* Corretto bug sul salvataggio dati torneo
+
+#PATCH ALL-IN-ONE Ver. 2.2#
+* Corretto bug sulla visualizzazione delle offerte in "Bacheca"
+
+#PATCH ALL-IN-ONE Ver. 2.1#
+* aggiunto controllo per l'attivazione delle statistiche squadre, solo a campionato iniziato
+* aggiunti angoli arrotondati ad alcuni box in home page
+
+#PATCH ALL-IN-ONE Ver. 2.0#
+* Molte migliorie al layout grafico:
+	- Aggiornato, in generale il comparto grafico, con immagini nuove, effetti css, e piccole modifiche ai colori	
+	- Aggiunto spazio logo di lega personalizzabile
+	- Cambiato l'aspetto grafico del menù laterale "Statistiche" per adattarlo al layout corrente 
+	- Cambiato il layout delle pagine "Televideo", "Indisponibili" e "Probabili formazioni", ed anche la modalità di apertura 
+	(adesso si aprono in un popup, per essere meglio fruibili)
+	- Aggiunto il logo squadra e la posizione in classifica nella "Bacheca"
+	- Migliorata la presentazione del fantacampo in "Bacheca"
+	- Modificata la grafica della Home page iniziale, per adattarla al layout corrente
+	- Molte altre modifiche minori
+* Migliorate le funzionalità di tutte le pagine di statistiche (tramite l'utilizzo di schede, e controlli in pagina):
+	- Manca solo il controllo nella pagina dei voti per visualizzare i voti delle giornate precedenti quella corrente
+	(lo aggiungerò nella prossima versione).
+* Aggiunto il collegamento "Classifiche Tornei" nella index, per visualizzare le classifiche di tutti i tornei in corso
+* Migliorata la pagina del "Calendario" con i collegamenti diretti ai tabellini delle partite
+* Molte altre modifiche minori
+
+#PATCH ALL-IN-ONE Ver. 1.6#
+* Corretto charset file header.php da ISO-5589-1 a UTF-8 (per allinearlo con l'ultima versione dello script)
+* Corretti alcuni bug di visualizzazione caratteri accentati in tinyMCE (editor per le "notizie")
+
+#PATCH ALL-IN-ONE Ver. 1.5#
+* Cambiato layout grafico alla pagina di invio risultati via mail; ottimizzata per Altervista
+* Ottimizzata pagina di invio formazioni attuali via mail, per renderla utilizzabile su Altervista
+* corretto bug di visualizzazione tabellini in "invia formazioni" in caso di tornei a somma di voti
+* Convertiti tutti i file della patch alla codifica ISO8859-1 con carattere di fine linea di tipo "Windows"
+
+#PATCH ALL-IN-ONE Ver. 1.4#
+* Rimossa libreria curvycorners (causava problemi con solito Internet Exploder 8)
+* Aggiunto il file style_patch_all-in-one.css specifico per la patch ed indipendente dal file style.css
+
+#PATCH ALL-IN-ONE Ver. 1.3#
+* Aggiunta la chat  facebook
+* Risolto bug calcolo giornate oltre limite di giornate totali
+* Risolto bug visualizzazione formazioni attuali nel caso di "Somma di voti"
+* Corretto charset file header.php della rev191, da UTF-8 a ISO-5589-1 (causava il problema di visualizzazione dei caratteri accentati)
+
+#PATCH ALL-IN-ONE Ver. 1.2#
+* Nella pagina mercato.php, resa fissa a lato del campetto, la colonna dei panchinari (prima, a volte si posizionava sotto al campetto)
+* Aggiunta la libreria javascript curvycorners per consentire la visualizzazione dei bordi arotondati dei box, anche su Internet Explorer 6 e 7.
+* Aggiunta la patch "Layout Formazioni Attuali" (file squadra1.php)
+* Aggiunto il codice css necessario alla visualizzazione corretta di alcuni box del layout tabellini
+* Aggiunta la patch "Layout Invio Formazioni" (file a_invia_voti.php)
+
+#PATCH ALL-IN-ONE Ver. 1.1#
+* Corretto il bug che non permetteva il calcolo della classifica per le ultime 2 giornate di campionato
+
+#PATCH ALL-IN-ONE Ver. 1.0#
+
+Contiene le seguenti patch:
+* Aggiunta opzioni calcolo punteggi scontri diretti
+* Classifica su file e varie
+* Layout calendario partite
+* Layout pagina mercato
+* Layout tabellini
+
+***********************
+	INSTALLAZIONE
+***********************
+Scompattare il file patch-all-in-one.zip e copiare tutto il contenuto nella root del vostro sito,
+sovrascrivendo i file già esistenti quando richiesto.
+Appena terminata l'installazione della patch (sostituzione dei files), accedere alla sezione di amministrazione del sito e aprire la pagina Gestione Tornei -> Parametri.
+Reinserire i valori per gli ultimi 5 parametri.
+Salvare.
+Ripetere l'operazione per ogni torneo presente.
+
+Se avevate effettuato il calcolo di alcune giornate, cancellate le giornate, e rieffettuate il calcolo punteggi.
+
+Questo è tutto.
+Adesso dovrebbe funzionarvi tutto correttamente. 
+
+****************************
+DESCRIZIONE DELLE MODIFICHE
+****************************
+
+### Aggiunta opzioni calcolo punteggi scontri diretti ###
+
+1) Distacco punti per penalizzazione, se meno di 60 punti
+Quando una sola squadra totalizza meno di 60 punti, si assegna 1 gol all'altra squadra, (anche se ha totalizzato meno di 66 punti) se la differenza tra i due Punti-Squadra è di almeno i punti specificati da questo parametro. Questa opzione serve a PENALIZZARE le squadre che giocano veramente male. 0 disabilita l'opzione.
+2) Differenza punti per GOL premio
+Quando la differenza tra i due Punti Squadra è di almeno i punti specificati da questo parametro, si assegna 1 ulteriore gol alla squadra con più Punti Squadra. Questa opzione serve a PREMIARE le squadre che ottengono punteggi schiaccianti nei confronti dell'avversario. 0 disabilita l'opzione.
+
+Altre modifiche apportate:
+- aggiunta la descrizione e modificato il nome alle due opzioni già  esistenti, ossia "Distacco punti a parità  di gol" e "Distacco punti in caso di 0 - 0".
+- aggiunta una funzione javascript nella pagina a_torneo.php che modifica dinamicamente nome e descrizione della nuova opzione "Distacco punti per penalizzazione, se meno di 60 punti", quando cambia il valore del parametro "soglia_voti_primo_gol"
+
+### Classifica su file e varie ###
+
+Sono state create 2 funzioni, una per il calcolo della classifica,e una per il salvataggio della stessa su file.
+Il calcolo classifica adesso viene fatto direttamente nel file a_calcola_punti_giornata.
+In più viene fatto anche quando si cancella una giornata.
+Per il resto si tratta solo di visualizzare la classifica, caricandola da file.
+Modificato il layout tramite l'aggiunta di nuove classi al css.
+
+### Layout calendario partite ###
+
+Si tratta di modifiche puramente "estetiche".
+Migliorata la formattazione.
+
+### Layout pagina mercato ###
+
+Aggiunto box "Prossimo Turno" in caso di scontri diretti.
+Aggiunto box dettagliato "Classifica".
+Aggiunto box dettagliato "Risultati di giornata".
+Ripulito il layout.
+Aggiunta la chat in pagina.
+
+### Layout tabellini ###
+
+Aggiunta di icone a fianco di ogni giocatore che evidenzino bonus e malus.
+Aggiunta del totale in fondo al tabellino di ogni squadra.
+Riordinati i tabellini in base agli scontri diretti (nel caso di campionato a scontri diretti).
+Modificato il layout.
