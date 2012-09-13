@@ -500,7 +500,6 @@ function select_vedi_tornei(){
 
 function calcola_classifica($classifica, $idtorneo){
 	global $percorso_cartella_dati;
-	if($classifica == null) $classifica = array();
 	
 	$tornei = @file($percorso_cartella_dati."/tornei.php");
 	$num_tornei = count($tornei);
@@ -508,6 +507,23 @@ function calcola_classifica($classifica, $idtorneo){
 	for ($num1 = 1 ; $num1 < $num_tornei; $num1++) {
 		@list($otid, $otdenom, $otpart, $otserie, $otmercato_libero, $ottipo_calcolo, $otgiornate_totali, $otritardo_torneo, $otcrediti_iniziali, $otnumcalciatori, $otcomposizione_squadra, $temp1, $temp2, $temp3, $temp4, $otstato, $otmodificatore_difesa, $otschemi, $otmax_in_panchina, $otpanchina_fissa, $otmax_entrate_dalla_panchina, $otsostituisci_per_ruolo, $otsostituisci_per_schema,  $otsostituisci_fantasisti_come_centrocampisti, $otnumero_cambi_max, $otrip_cambi_numero, $otrip_cambi_giornate, $otrip_cambi_durata, $otaspetta_giorni, $otaspetta_ore, $otaspetta_minuti, $otnum_calciatori_scambiabili, $otscambio_con_soldi, $otvendi_costo, $otpercentuale_vendita, $otsoglia_voti_primo_gol, $otincremento_voti_gol_successivi, $otvoti_bonus_in_casa, $otpunti_partita_vinta, $otpunti_partita_pareggiata, $otpunti_partita_persa, $otdifferenza_punti_a_parita_gol, $otdifferenza_punti_zero_a_zero, $otdifferenza_punti_prima_soglia_meno_sei, $otdifferenza_punti_gol_premio, $otmin_num_titolari_in_formazione, $otpunti_pareggio, $otpunti_pos) = explode(",", $tornei[$num1]);
 		if($otid == $idtorneo) break;
+	}
+	
+	if($classifica == null) {
+		$classifica = array();
+		$file = file($percorso_cartella_dati."/utenti_".$otid.".php");
+		$linee = count($file);
+		$utenti = array();
+		for($num1 = 1 ; $num1 < $linee; $num1++) {
+			@list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocittà, $ocrediti, $ovariazioni, $ocambi, $oreg) = explode("<del>", $file[$num1]);
+			$utenti[$num1-1] = $outente;
+		}
+		for($i=0; $i<$otpart;$i++){
+			for($j=0; $j<21;$j++){
+				$classifica[$utenti[$i]][$j] = "";
+				echo "".$utenti[$i]."<br/>";
+			}
+		}
 	}
 	
 	$num1 = 1;

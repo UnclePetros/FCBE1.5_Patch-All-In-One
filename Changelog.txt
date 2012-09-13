@@ -1,3 +1,9 @@
+#PATCH ALL-IN-ONE Ver. 2.93#
+* Introdotta temporaneamente la possibilità di visualizzare le formazioni avversarie
+
+#PATCH ALL-IN-ONE Ver. 2.92#
+* Corretto bug sul ricalcolo della classifica, quando vengono modificati i parametri di configurazione di un torneo 
+
 #PATCH ALL-IN-ONE Ver. 2.9#
 * Sistemata la gestione panchina fissa
 

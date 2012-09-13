@@ -136,10 +136,10 @@ if ($stato_mercato != "I") echo "<a href='./registro_mercato.php' >Registro merc
 		<a href='./a_sito.php' >Gestione news</a>$acapo";
 	} # fine if($_SESSION['permessi'] == 2)
 
-	if ($stato_mercato != "I" AND $stato_mercato != "B"  AND $chiusura_giornata == 1) {
+	if ($stato_mercato != "I" AND $stato_mercato != "B"  AND $chiusura_giornata != 1) {
 		echo "<hr><center>
 		<div class='box3'>
-		<form method='post' action='./squadra.php'><b>Visualizza Ultime Formazioni</b><br/>$acapo
+		<form method='post' action='./squadra.php'><b>Visualizza Probabili Formazioni</b><br/>$acapo
 		<select name='nome_squadra' style='width: 150px'>$acapo
 		<option value='tutti'>Scegli squadra</option>$acapo";
 
