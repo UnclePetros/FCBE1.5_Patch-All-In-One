@@ -752,7 +752,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] >= 4) {
 					#criterio scarto di N punti in caso di 0-0
 					if ($gol1 == 0 && $gol2 == 0 && $differenza_punti_zero_a_zero > 0){
 						if($voti_tot_fc[$partita[0]] >= $voti_tot_fc[$partita[1]]+$differenza_punti_zero_a_zero) $gol1 = $gol1+1;
-						else if($voti_tot_fc[$partita[1]] > $voti_tot_fc[$partita[0]]+$differenza_punti_zero_a_zero) $gol2 = $gol2+1;
+						else if($voti_tot_fc[$partita[1]] >= $voti_tot_fc[$partita[0]]+$differenza_punti_zero_a_zero) $gol2 = $gol2+1;
 					}
 					#criterio scarto di N punti se una delle due squadre totalizza un punteggio inferiore alla prima soglia gol meno sei
 					if ($differenza_punti_prima_soglia_meno_sei > 0){

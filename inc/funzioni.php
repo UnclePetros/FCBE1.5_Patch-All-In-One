@@ -521,7 +521,6 @@ function calcola_classifica($classifica, $idtorneo){
 		for($i=0; $i<$otpart;$i++){
 			for($j=0; $j<21;$j++){
 				$classifica[$utenti[$i]][$j] = "";
-				echo "".$utenti[$i]."<br/>";
 			}
 		}
 	}
