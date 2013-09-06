@@ -237,12 +237,14 @@ if (@fopen('http://fcbe.sssr.it/dati/'.$cartella_remota.'/MCC00.txt', 'r')) $clf
 
 	#if ($clfv == "NO") $tabella_giornate .= "<div style='float: left; padding: 5px;'>Calciatori.txt non disponibile!</div>";
 	#elseif (@fopen($file_voti_localec,'r')) $tabella_giornate .= "<div style='float: left; padding: 5px;'>calciatori.txt presente!<br />Si può aggiornare!</div>";
+	if ($flag_ritardo == 0) {
 	$tabella_giornate .= "<div style='float: left; padding: 5px;'><form method='post' action='./a_gestione.php'>
 		<input type='hidden' name='ccfv' value='SI' />
 		<input type='hidden' name='clfv' value='$clfv' />
 		<input type='submit' name='carica_calciatori' $dis1 value='Carica calciatori.txt' />
 		agg. al: $gh		
 		</form></div>";
+	}
 
 #######################################
 $tabella_giornate.="</div></td></tr></table>";

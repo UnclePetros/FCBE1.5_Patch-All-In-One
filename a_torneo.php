@@ -317,7 +317,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 			</tr>
 			<tr>
 			<td>Crediti iniziali</td>
-			<td align="center"><input name="N_otcrediti_iniziali" type="text" value="<?php echo $otcrediti_iniziali?>" size="4" maxlength="3" /></td>
+			<td align="center"><input name="N_otcrediti_iniziali" type="text" value="<?php echo $otcrediti_iniziali?>" size="4" maxlength="4" /></td>
 			<td align="left">Crediti iniziali, e da incrementare in caso di giornate di riparazione. </td>
 			</tr>
 			<tr>
