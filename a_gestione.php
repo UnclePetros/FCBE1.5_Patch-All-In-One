@@ -24,6 +24,22 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user) {
 	require ("./a_menu.php");
 
 	
+	if ($procedi=="SI"){
+	$mcc=file_get_contents($sito_mirror.$cartella_remota."/MCC$ultima_gio.txt");
+	$mcc_vecchio=fopen("./".$prima_parte_pos_file_voti.$ultima_gio.".txt","w+");
+	fwrite($mcc_vecchio,$mcc);
+	fclose($mcc_vecchio);
+	$voti_vecchio=fopen($percorso_cartella_voti."/voti".$ultima_gio.".txt","w+");
+	fwrite($voti_vecchio,$mcc);
+	fclose($voti_vecchio);	
+	$errori= error_get_last();
+	if (empty($errori)){
+    $mess_mcc = "Errore nella copia del file: ".$errori['type'];
+    $mess_mcc .= "\n".$errori['message'];
+		} 
+	else $mess_mcc = "File MCC$ultima_gio aggiornato!";
+	
+	}
 	if($cfv == "SI" AND isset($nfv) AND isset($lfv)){
 	$voti_1x = file_get_contents($lfv);
 	$voti_2x = fopen("./".$prima_parte_pos_file_voti.$nfv.".txt","w+");
@@ -82,7 +98,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user) {
 	$dis="";
 	$dis1="";
 	$dis2="";
-
+	
 	if (@is_file($percorso_cartella_dati."/chiusura_giornata.txt")) $status_giornata = "giornata chiusa";
 	else $status_giornata = "giornata aperta";
 
@@ -127,7 +143,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user) {
 	if (strlen($mc) == 1) $mc = "0".$mc;
 	if (strlen($mesedopo) == 1) $mesedopo = "0".$mesedopo;
 
-	if (!$ac) $ac = 2011;
+	if (!$ac) $ac = 2013;
 	$annodopo = $ac+1;
 
 	$tabella_chigio .= "<select name='mesem'>
@@ -163,8 +179,10 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user) {
 
 	$tornei = @file($percorso_cartella_dati."/tornei.php");
 	$num_tornei = count($tornei);
-	@list($otid, $otdenom, $otpart, $otserie, $otmercato_libero, $ottipo_calcolo, $otgiornate_totali, $otritardo_torneo, $otcrediti_iniziali, $otnumcalciatori, $otcomposizione_squadra, $temp1, $temp2, $temp3, $temp4, $otstato, $otmodificatore_difesa, $otschemi, $otmax_in_panchina, $otpanchina_fissa, $otmax_entrate_dalla_panchina, $otsostituisci_per_ruolo, $otsostituisci_per_schema,  $otsostituisci_fantasisti_come_centrocampisti, $otnumero_cambi_max, $otrip_cambi_numero, $otrip_cambi_giornate, $otrip_cambi_durata, $otaspetta_giorni, $otaspetta_ore, $otaspetta_minuti, $otnum_calciatori_scambiabili, $otscambio_con_soldi, $otvendi_costo, $otpercentuale_vendita, $otsoglia_voti_primo_gol, $otincremento_voti_gol_successivi, $otvoti_bonus_in_casa, $otpunti_partita_vinta, $otpunti_partita_pareggiata, $otpunti_partita_persa, $otdifferenza_punti_a_parita_gol, $otdifferenza_punti_zero_a_zero, $otdifferenza_punti_prima_soglia_meno_sei, $otdifferenza_punti_gol_premio, $otmin_num_titolari_in_formazione, $otpunti_pareggio, $otpunti_pos, $otreset_scadenza) = explode(",", $tornei[$num1]);
-
+	for ($nums1 = 1 ; $nums1 < $num_tornei; $nums1++) {	
+		@list($otid, $otdenom, $otpart, $otserie, $otmercato_libero, $ottipo_calcolo, $otgiornate_totali, $otritardo_torneo, $otcrediti_iniziali, $otnumcalciatori, $otcomposizione_squadra, $temp1, $temp2, $temp3, $temp4, $otstato, $otmodificatore_difesa, $otschemi, $otmax_in_panchina, $otpanchina_fissa, $otmax_entrate_dalla_panchina, $otsostituisci_per_ruolo, $otsostituisci_per_schema,  $otsostituisci_fantasisti_come_centrocampisti, $otnumero_cambi_max, $otrip_cambi_numero, $otrip_cambi_giornate, $otrip_cambi_durata, $otaspetta_giorni, $otaspetta_ore, $otaspetta_minuti, $otnum_calciatori_scambiabili, $otscambio_con_soldi, $otvendi_costo, $otpercentuale_vendita, $otsoglia_voti_primo_gol, $otincremento_voti_gol_successivi, $otvoti_bonus_in_casa, $otpunti_partita_vinta, $otpunti_partita_pareggiata, $otpunti_partita_persa, $otdifferenza_punti_a_parita_gol, $otdifferenza_punti_zero_a_zero, $otdifferenza_punti_prima_soglia_meno_sei, $otdifferenza_punti_gol_premio, $otmin_num_titolari_in_formazione, $otpunti_pareggio, $otpunti_pos, $otreset_scadenza) = explode(",", $tornei[$num1]);
+		if ($otritardo_torneo != 0) $flag_ritardo = $otritardo_torneo;
+	} # fine for $nums1	
 	$num1 = 1;
 	while ($num1 <= 38) {
 		if (strlen($num1) == 1) $num1 = "0".$num1;
@@ -175,6 +193,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user) {
 		for($num0 = 1; $num0 < $num_tornei; $num0++) {
 			if (@is_file($percorso_cartella_dati."/".$giornata."_".$num0."_0") AND $num1 >= $prossima) {
 				$tabella_giornate .= "<a href='a_giornata.php?num_giornata=$num1' class='evidenziato'>&nbsp;$num1&nbsp;</a>&nbsp;&nbsp;&nbsp;";
+				$ultima_gio=$num1;
 				if($num1 >= $prossima) $prossima = $num1+1;
 			} # fine if (is_file($giornata))
 		} # fine for $num0
@@ -184,19 +203,33 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user) {
 	if ($prossima < 1) $prossima = 1;
 	if (strlen($prossima) == 1) $prossima = "0".$prossima;
 	
-	$timeout = 2;
-	$old = ini_set('default_socket_timeout', $timeout);
-	$file = @fopen('http://fcbe.sssr.it/dati/'.$cartella_remota.'/MCC'.$prossima.'.txt', 'r');
-	$file2 = @fopen('http://fantadownload.altervista.org/mirrorFCBE/dati/'.$cartella_remota.'/MCC'.$prossima.'.txt', 'r');
-	ini_set('default_socket_timeout', $old);
-	//stream_set_timeout($file, $timeout);
-	//stream_set_blocking($file, 0);
+	switch ($abilita_stat) {
+			case 'AUTO': {
+				if (@fopen($sito_principale.$cartella_remota.'/MCC'.$prossima.'.txt', 'r')) $lfv = $sito_principale.$cartella_remota."/MCC$prossima.txt";
+				else if (@fopen($sito_mirror.$cartella_remota.'/MCC'.$prossima.'.txt', 'r')) $lfv = $sito_mirror.$cartella_remota."/MCC$prossima.txt";
+					else {$dis2="disabled='disabled'";
+						$lfv = "NO";}
+			break;
+			}	
+			case 'PRINCIPALE': {
+				if (@fopen($sito_principale.$cartella_remota.'/MCC'.$prossima.'.txt', 'r')) $lfv = $sito_principale.$cartella_remota."/MCC$prossima.txt";
+					else {$dis2="disabled='disabled'";
+						$lfv = "NO";}
+			break;	
+			}	
+            case 'MIRROR': {
+				if (@fopen($sito_mirror.$cartella_remota.'/MCC'.$prossima.'.txt', 'r')) $lfv = $sito_mirror.$cartella_remota."/MCC$prossima.txt";
+					else {$dis2="disabled='disabled'";
+						$lfv = "NO";}
+			break;	
+			}
+			case 'OFF': {
+				$dis2="disabled='disabled'";
+				$lfv = "NO";
+			break;
+			}				
+    }
 	
-	if ($file) $lfv = "http://fcbe.sssr.it/dati/".$cartella_remota."/MCC$prossima.txt";
-	elseif ($file2) $lfv = "http://fantadownload.altervista.org/mirrorFCBE/dati/".$cartella_remota."/MCC$prossima.txt";
-	else {
-		$dis2="disabled='disabled'";
-		$lfv = "NO";}
 	$file_voti_locale = "./".$prima_parte_pos_file_voti.$prossima.".txt";
 	$tabella_giornate .= "<hr noshade /><div style='float: clear'>";
 	
@@ -207,8 +240,82 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user) {
 	#if ($lfv == "NO") $tabella_giornate .= "<div style='float: left; padding: 5px;'>MCC$prossima.txt non disponibile!</div>";
 	#elseif (@fopen($file_voti_locale,'r')) $tabella_giornate .= "<div style='float: left; padding: 5px;'>MCC$prossima.txt presente!<br />Si pu&ograve; creare la giornata!</div>";
 	#$tabella_giornate .= "Cartella voti remota\n";
-	$tabella_giornate .= "<center>Cartella voti remota: <b>$cartella_remota</center></b>";	
+	$tabella_giornate .= "<center>Cartella voti remota: <b>$cartella_remota</center></b>";
+	
+############################### file calciatori
+	switch ($abilita_stat) {
+			case 'AUTO': {
+				if (@fopen($sito_principale.$cartella_remota.'/MCC00.txt', 'r')) $clfv = $sito_principale.$cartella_remota."/MCC00.txt";
+				else if (@fopen($sito_mirror.$cartella_remota.'/calciatori.txt', 'r')) $clfv = $sito_mirror.$cartella_remota."/calciatori.txt";
+					else {$dis1="disabled='disabled'";
+						$clfv = "NO";}
+			break;
+			}	
+			case 'PRINCIPALE': {
+				if (@fopen($sito_principale.$cartella_remota.'/MCC00.txt', 'r')) $clfv = $sito_principale.$cartella_remota."/MCC00.txt";
+					else {$dis1="disabled='disabled'";
+						$clfv = "NO";}
+			break;	
+			}	
+            case 'MIRROR': {
+				if (@fopen($sito_mirror.$cartella_remota.'/calciatori.txt', 'r')) $clfv = $sito_mirror.$cartella_remota."/calciatori.txt";
+					else {$dis1="disabled='disabled'";
+						$clfv = "NO";}
+			break;	
+			}
+			case 'OFF': {
+				$dis1="disabled='disabled'";
+				$clfv = "NO";
+			break;
+			}				
+    }
+
+	$file_voti_localec = "./dati/calciatori.txt";
+	if (file_exists($file_voti_localec)) $gh=date ("j/n/Y", filemtime($file_voti_localec));
+		else $gh="---";
+	
+if ($ultima_gio==00) {	
+	$curl = curl_init($clfv);
+	curl_setopt($curl, CURLOPT_NOBODY, true);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($curl, CURLOPT_FILETIME, true);
+	$result = curl_exec($curl);
+	if ($result === false) {
+		die (curl_error($curl)); }
+	$timestamp = curl_getinfo($curl, CURLINFO_FILETIME);
+
+if ($timestamp > filemtime($file_voti_localec)) { //otherwise unknown
+    $tabella_giornate .= "<center><br/><span class='evidenziato'>E' disponibile un nuovo file <b>calciatori.txt</b></center></span><br/>";
+} 
+}else {
+	$curl = curl_init($sito_mirror.$cartella_remota."/MCC$ultima_gio.txt");
+	curl_setopt($curl, CURLOPT_NOBODY, true);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($curl, CURLOPT_FILETIME, true);
+	$result = curl_exec($curl);
+	if ($result === false) {
+		echo (curl_error($curl)); }
+	$timestamp = curl_getinfo($curl, CURLINFO_FILETIME);
+$file_mcc= ("./".$prima_parte_pos_file_voti.$ultima_gio.".txt");
+
+if ($timestamp > filemtime($file_mcc)) { //otherwise unknown
+    $tabella_giornate .= "<center><br/><span class='evidenziato'>E' disponibile un aggiornamento del file <b>MCC$ultima_gio.txt</b></center></span><br/>";
 	$tabella_giornate .= "<div style='float: left; padding: 5px;'><form method='post' action='./a_gestione.php'>
+		<input type='hidden' name='procedi' value='SI' />
+		<input type='hidden' name='ultima_gio' value='$ultima_gio' />
+		<input type='submit' name='aggiorna_voti' value='Aggiorna MCC$ultima_gio.txt' />
+		</form></div>";
+} 	
+}
+#########################	controllo presenza voti --> disattivo pulsante calciatori
+#	$ultima=ultima_giornata_giocata();
+#	if (@fopen("$percorso_cartella_voti/voti$ultima.txt", 'r')) $dis1="disabled='disabled'";
+#		else $dis1="";
+
+	if ($clfv == "NO" and $lfv =="NO" ) $tabella_giornate .= "<div style='float: center; padding: 22px;'><b>Procedura disattivata da pannello config!</b>";
+	else {
+	#elseif (@fopen($file_voti_localec,'r')) $tabella_giornate .= "<div style='float: left; padding: 5px;'>calciatori.txt presente!<br />Si può aggiornare!</div>";
+		$tabella_giornate .= "<div style='float: left; padding: 5px;'><form method='post' action='./a_gestione.php'>
 		<input type='hidden' name='cfv' value='SI' />
 		<input type='hidden' name='lfv' value='$lfv' />
 		<input type='hidden' name='nfv' value='$prossima' />
@@ -220,6 +327,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user) {
 	<input type='submit' name='crea_giornata' $dis value='Crea la giornata $prossima' />
 	</form></div>";
 	
+	if ($flag_ritardo == 0 and $ultima_gio==00) {
 ############################### file calciatori
 
 if (@fopen('http://fcbe.sssr.it/dati/'.$cartella_remota.'/MCC00.txt', 'r')) $clfv = "http://fcbe.sssr.it/dati/'.$cartella_remota.'/MCC00.txt";
@@ -243,7 +351,7 @@ if (@fopen('http://fcbe.sssr.it/dati/'.$cartella_remota.'/MCC00.txt', 'r')) $clf
 		<input type='hidden' name='clfv' value='$clfv' />
 		<input type='submit' name='carica_calciatori' $dis1 value='Carica calciatori.txt' />
 		agg. al: $gh		
-		</form></div>";
+		</form></div>";}
 	}
 
 #######################################

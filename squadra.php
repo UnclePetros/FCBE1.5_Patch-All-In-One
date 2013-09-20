@@ -521,25 +521,25 @@ if ($_SESSION['valido'] == "SI") {
 
 							if ($np == substr($verifica_sg,0,1))  $controlla_squadra .= "<b>Portieri: $np su ".substr($verifica_sg,0,1)." - <font color='red'>OK</font></b><br />";
 							elseif ($np > substr($verifica_sg,0,1)) $controlla_squadra .= "Portieri: $np su ".substr($verifica_sg,0,1)." - <fontcolor='red'>Vendere esubero</font><br />";
-							elseif ($np < substr($verifica_sg,0,1)) $controlla_squadra .= "Portieri: $np su ".substr($verifica_sg,0,1)." - <a href='tab_calciatori.php?ruolo_guarda=P&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>acquista</a><br />";
+							elseif ($np < substr($verifica_sg,0,1)) $controlla_squadra .= "Portieri: $np su ".substr($verifica_sg,0,1)." - <a href='tab_calciatori.php?ruolo_guarda=P&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>ACQUISTA</a><br />";
 
 							if ($nd == substr($verifica_sg,1,1))  $controlla_squadra .= "<b>Difensori: $nd su ".substr($verifica_sg,1,1)." - <font color='red'>OK</font></b><br />";
 							elseif ($nd > substr($verifica_sg,1,1)) $controlla_squadra .= "Difensori: $nd su ".substr($verifica_sg,1,1)." - <font color='red'>Vendere esubero</font><br />";
-							elseif ($nd < substr($verifica_sg,1,1)) $controlla_squadra .= "Difensori: $nd su ".substr($verifica_sg,1,1)." - <a href='tab_calciatori.php?ruolo_guarda=D&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>acquista</a><br />";
+							elseif ($nd < substr($verifica_sg,1,1)) $controlla_squadra .= "Difensori: $nd su ".substr($verifica_sg,1,1)." - <a href='tab_calciatori.php?ruolo_guarda=D&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>ACQUISTA</a><br />";
 
 							if ($nc == substr($verifica_sg,2,1))  $controlla_squadra .= "<b>Centrocampisti: $nc su ".substr($verifica_sg,2,1)." - <font color='red'>OK</font></b><br />";
 							elseif ($nc > substr($verifica_sg,2,1)) $controlla_squadra .= "Centrocampisti: $nc su ".substr($verifica_sg,2,1)." -<font color='red'>Vendere esubero</font><br />";
-							elseif ($nc < substr($verifica_sg,2,1)) $controlla_squadra .= "Centrocampisti: $nc su ".substr($verifica_sg,2,1)." -<a href='tab_calciatori.php?ruolo_guarda=C&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>acquista</a><br />";
+							elseif ($nc < substr($verifica_sg,2,1)) $controlla_squadra .= "Centrocampisti: $nc su ".substr($verifica_sg,2,1)." -<a href='tab_calciatori.php?ruolo_guarda=C&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>ACQUISTA</a><br />";
 
 							if ($considera_fantasisti_come == "F") {
 								if ($nf == substr($verifica_sg,3,1))  $controlla_squadra .= "<b>Fantasisti: $nf su ".substr($verifica_sg,3,1)." - <font color='red'>OK</font></b><br />";
 								elseif ($nf > substr($verifica_sg,3,1)) $controlla_squadra .= "Fantasisti: $nf su ".substr($verifica_sg,3,1)." - <font color='red'>Vendere esubero</font><br />";
-								elseif ($nf < substr($verifica_sg,3,1)) $controlla_squadra .= "Fantasisti: $nf su ".substr($verifica_sg,3,1)." - <a href='tab_calciatori.php?ruolo_guarda=F&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>acquista</a><br />";
+								elseif ($nf < substr($verifica_sg,3,1)) $controlla_squadra .= "Fantasisti: $nf su ".substr($verifica_sg,3,1)." - <a href='tab_calciatori.php?ruolo_guarda=F&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>ACQUISTA</a><br />";
 							}
 
 							if ($na == substr($verifica_sg,4,1)) $controlla_squadra .= "<b>Attaccanti: $na su ".substr($verifica_sg,4,1)." - <font color='red'>OK</font></b><br />";
 							elseif ($na > substr($verifica_sg,4,1)) $controlla_squadra .= "Attaccanti: $na su ".substr($verifica_sg,4,1)." - <font color='red'>Vendere esubero</font><br />";
-							elseif ($na < substr($verifica_sg,4,1)) $controlla_squadra .= "Attaccanti: $na su ".substr($verifica_sg,4,1)." - <a href='tab_calciatori.php?ruolo_guarda=A&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>acquista</a><br />";
+							elseif ($na < substr($verifica_sg,4,1)) $controlla_squadra .= "Attaccanti: $na su ".substr($verifica_sg,4,1)." - <a href='tab_calciatori.php?ruolo_guarda=A&amp;xsquadra_ok=NO&amp;mercato_libero=$mercato_libero' class='user'>ACQUISTA</a><br />";
 
 							$fuori_tabella .= "<br /><b><font color='red'>Fino a quando non saranno rispettati i parametri non sar&agrave; possibile impostare la squadra!</font></b><br /><br />";
 							$fuori_tabella .= "<br />FantaEuro residui: <b>$soldi_spendibili</b> Fanta-Euro.<br />Numero di calciatori da comprare:<b>$num_calciatori_comprabili</b>.<br />";

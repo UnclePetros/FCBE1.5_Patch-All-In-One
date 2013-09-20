@@ -192,16 +192,19 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] != $admin_user) {
 				if ($num1 % 2) $color=$colore_riga_alt;
 				else $color="#FFFFFF";
 
-				$tempo=$anno_off.", ".$mese_off."-1, ".$giorno_off.", ".$ora_off.", ".$minuto_off.", ".$secondo_off; #formato 2012, 8-1, 02, 13, 14
-				countdown($numero,$tempo);				
-
+				if ($risparmia_risorse=="NO") { 
+					$tempo=$anno_off.", ".$mese_off."-1, ".$giorno_off.", ".$ora_off.", ".$minuto_off.", ".$secondo_off; #formato 2012, 8-1, 02, 13, 14
+					countdown($numero,$tempo);
+					$ris="<div id='$numero'></div>";}
+					else $ris="$tempo_restante";
+		
 				$tab_comprati .= "<tr bgcolor='$color'>
 				<td align='center'>$numero</td>
 				<td>$nome</td>
 				<td align='center'>$ruolo</td>
 				<td align='center'>$costo_mostra</td>
 				<td align='center'>$proprietario_mostra</td>
-				<td align='center'><div id='$numero'></div></td>
+				<td align='center'>$ris</td>
 				<td align='center'>$offri</td></tr>";
 			} # fine else if ($sec_restanti < 0)
 

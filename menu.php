@@ -63,7 +63,7 @@ if ($menu_lato == "SI" AND $_SESSION['permessi'] <= 4 AND $_SESSION['valido'] ==
 ?>
 	<a href="javascript:void(0)" onclick="window.open('chat.php?utente=<?php echo $_SESSION['utente']; ?>&torneo=<?php echo $otdenom; ?>','CHAT','width=430,height=300,left=150,top=150,status=no,toolbar=no,menubar=no,location=no');">Chat</a> 
 <?php	
-if ($stato_mercato != "I") echo "<a href='./registro_mercato.php' >Registro mercato</a>".$acapo;
+if ($chiusura_giornata == 1) echo "<a href='./registro_mercato.php' >Registro mercato</a>".$acapo;
 
 	for ($num1 = 1; $num1 < 40; $num1++) {
 		if ($campionato["1-$num1"] == "S") {

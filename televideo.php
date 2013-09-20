@@ -112,16 +112,16 @@ Probabili formazioni
 <a href='televideo.php?telev=237' style='padding: 0px 0px 0px 19px;font-size: small'>Inter</a>
 <a href='televideo.php?telev=238' style='padding: 0px 0px 0px 19px;font-size: small'>Juventus</a>
 <a href='televideo.php?telev=239' style='padding: 0px 0px 0px 19px;font-size: small'>Lazio</a>
-<a href='televideo.php?telev=240' style='padding: 0px 0px 0px 19px;font-size: small'>Milan</a>
-<a href='televideo.php?telev=241' style='padding: 0px 0px 0px 19px;font-size: small'>Napoli</a>
-<a href='televideo.php?telev=242' style='padding: 0px 0px 0px 19px;font-size: small'>Palermo</a>
+<a href='televideo.php?telev=240' style='padding: 0px 0px 0px 19px;font-size: small'>Livorno</a>
+<a href='televideo.php?telev=241' style='padding: 0px 0px 0px 19px;font-size: small'>Milano</a>
+<a href='televideo.php?telev=242' style='padding: 0px 0px 0px 19px;font-size: small'>Napoli</a>
 <a href='televideo.php?telev=243' style='padding: 0px 0px 0px 19px;font-size: small'>Parma</a>
-<a href='televideo.php?telev=244' style='padding: 0px 0px 0px 19px;font-size: small'>Pescara</a>
-<a href='televideo.php?telev=245' style='padding: 0px 0px 0px 19px;font-size: small'>Roma</a>
-<a href='televideo.php?telev=246' style='padding: 0px 0px 0px 19px;font-size: small'>Sampdoria</a>
-<a href='televideo.php?telev=247' style='padding: 0px 0px 0px 19px;font-size: small'>Siena</a>
-<a href='televideo.php?telev=248' style='padding: 0px 0px 0px 19px;font-size: small'>Torino</a>
-<a href='televideo.php?telev=249' style='padding: 0px 0px 0px 19px;font-size: small'>Udinese</a>
+<a href='televideo.php?telev=244' style='padding: 0px 0px 0px 19px;font-size: small'>Roma</a>
+<a href='televideo.php?telev=245' style='padding: 0px 0px 0px 19px;font-size: small'>Sampdoria</a>
+<a href='televideo.php?telev=246' style='padding: 0px 0px 0px 19px;font-size: small'>Sassuolo</a>
+<a href='televideo.php?telev=247' style='padding: 0px 0px 0px 19px;font-size: small'>Torino</a>
+<a href='televideo.php?telev=248' style='padding: 0px 0px 0px 19px;font-size: small'>Udinese</a>
+<a href='televideo.php?telev=249' style='padding: 0px 0px 0px 19px;font-size: small'>Verona</a>
 </div>
 </div>
 <div style='clear:both'></div></div>";

@@ -222,7 +222,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 		else {
 			if ($azione == "nuovo"){
 				if($attiva_multi != "SI") echo "<div align='center' class='evidenziato'><h2>ATTENZIONE</h2> multigestione non attivata, proseguite a vostro rischio e pericolo!!!</div><br /><br />";
-				echo "<div align='center'>La procedura di configurazione del torneo si svolge in due fasi: questa è la prima dove sono definite le caratteristiche generali del torneo. Occorrer&agrave; entrare in modifica per aggiungere le opzioni relarive alla modalit&agrave; di torneo scelta.</div><br /><br />";
+				echo "<div align='center'>La procedura di configurazione del torneo si svolge in due fasi: questa &egrave; la prima dove sono definite le caratteristiche generali del torneo. Occorrer&agrave; entrare in modifica per aggiungere le opzioni relarive alla modalit&agrave; di torneo scelta.</div><br /><br />";
 				$otid=$itorneo;
 			}
 			else {
@@ -397,7 +397,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 			<option value="0" <?php if($ottemp1 == "0") echo "selected"; ?> > Pubblica</option>
 			<option value="1" <?php if($ottemp1 == "1") echo "selected"; ?> > Privata</option>
 			</select></td>
-			<td align="left">La messaggeria pubblica condivide i messaggi con tutti i tornei del sito, mentre se privata è ristretta al solo torneo di riferimento.</td>
+			<td align="left">La messaggeria pubblica condivide i messaggi con tutti i tornei del sito, mentre se privata &egrave; ristretta al solo torneo di riferimento.</td>
 			</tr>
 
 			<?php
@@ -528,14 +528,14 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 				<td align='center'><input name='N_otdifferenza_punti_prima_soglia_meno_sei' type='text' value='$otdifferenza_punti_prima_soglia_sei' size='3' maxlength='2' /></td>
 				<td align='left'>Quando una sola squadra totalizza meno di <span id='desc_diff_prima_soglia_meno_sei'>60</span> punti, si assegna 1 gol all'altra
   				squadra, (anche se ha totalizzato meno di <span id='desc_diff_prima_soglia'>66</span> punti)
-  				se la differenza tra i due Punti-Squadra è di almeno i punti specificati da questo parametro. 
+  				se la differenza tra i due Punti-Squadra &egrave; di almeno i punti specificati da questo parametro. 
   				Questa opzione serve a PENALIZZARE le squadre che giocano veramente male.
   				<b>0 disabilita l'opzione</b>.</td>
 				</tr>
 				<tr>
 				<td>Differenza punti per GOL premio</td>
 				<td align='center'><input name='N_otdifferenza_punti_gol_premio' type='text' value='$otdifferenza_punti_gol_premio' size='3' maxlength='2' /></td>
-				<td align='left'>Quando la differenza tra i due Punti Squadra è di almeno i punti specificati da questo parametro,
+				<td align='left'>Quando la differenza tra i due Punti Squadra &egrave; di almeno i punti specificati da questo parametro,
   				si assegna 1 ulteriore gol alla squadra con più Punti Squadra.
   				Questa opzione serve a PREMIARE le squadre che ottengono punteggi
   				schiaccianti nei confronti dell'avversario.

@@ -63,7 +63,7 @@ if ($debug == 1) echo "$num1 / $num_tornei<br/>";
 
 		if (@is_file($percorso_cartella_dati."/giornata".$giornata."_".$otid."_".$otserie)) {
 			$creare = "NO";
-			$errore[] = "La giornata <b>$giornata</b> del torneo <b>$otdenom</b> è gia stata creata!";
+			$errore[] = "La giornata <b>$giornata</b> del torneo <b>$otdenom</b> &egrave; gia stata creata!";
 		}
 
 		if ($num_giornata < 1) {
@@ -74,12 +74,12 @@ if ($debug == 1) echo "$num1 / $num_tornei<br/>";
 		
 		if ($num_giornata > $otgiornate_totali) {
 			$creare = "NO";
-			$errore[] = "Il torneo è terminato alla giornata $otgiornate_totali";
+			$errore[] = "Il torneo &egrave; terminato alla giornata $otgiornate_totali";
 		}
 
 		if ($stato_mercato == "I" OR $stato_mercato == "R" OR $stato_mercato == "B") {
 			$creare = "NO";
-			$errore[] = "Lo stato mercato del torneo è ancora in fase iniziale, di riparazione o di buste chiuse!";
+			$errore[] = "Lo stato mercato del torneo &egrave; ancora in fase iniziale, di riparazione o di buste chiuse!";
 		}
 
 		$num_campionati = count($campionato);
@@ -327,6 +327,7 @@ if ($debug == 1) echo "$num1 / $num_tornei<br/>";
 	} # fine for $tornei
 
 	if (@is_file($percorso_cartella_dati."/chiusura_giornata.txt")) unlink ($percorso_cartella_dati."/chiusura_giornata.txt");
+	if ($creare!="NO"){
 	echo "<center><br/><b>Apertura automatica giornata</b>";
 
 	$data_chigio = @file($percorso_cartella_dati."/data_chigio.txt");
@@ -341,15 +342,29 @@ if ($debug == 1) echo "$num1 / $num_tornei<br/>";
 
 	$prossima_chiusura = date ("Ymd",$prossima_settimana)."$orac$minc";
 
-	echo "<br/><font class='evidenziato'>E' stata impostata una chiusura operazioni per il <b>$prossima_chiusura</b>.</font><br /></center>";
-	$file_dati = fopen($percorso_cartella_dati."/data_chigio.txt","wb+");
+	
+$file_dati = fopen($percorso_cartella_dati."/data_chigio.txt","wb+");
 	flock($file_dati,LOCK_EX);
 	fwrite($file_dati, $prossima_chiusura);
 	flock($file_dati,LOCK_UN);
 	fclose($file_dati);
 
+	$data_chigio = @file($percorso_cartella_dati."/data_chigio.txt");
+	$ac = substr($data_chigio[0],0,4);
+	$mc = substr($data_chigio[0],4,2);
+	$gc = substr($data_chigio[0],6,2);
+	$orac = substr($data_chigio[0],8,2); if (!$orac) $orac = "14";
+	$minc = substr($data_chigio[0],10,2); if (!$minc) $minc = "00";
+	
+	echo "<br/><font class='evidenziato'>E' stata impostata una chiusura operazioni per il <b>$gc.$mc.$ac</b> alle <b>$orac:$minc</b>.</font><br /></center>";
+	
 	unset($prossima_chiusura,$prossima_settimana);
 
+
+	#######backup######
+	echo "<br/>";
+	include("./a_b2mail.php");
+}
 	$tabella_giornate = "<br/><table summary='Tabella giornate' style='width: 100%; margin: 3px; padding:5px; background-color:transparent'>
 	<caption>GIORNATE</caption><tr><td align='center'>";
 

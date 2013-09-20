@@ -49,13 +49,13 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] >= 4) {
 		$soldi_iniziali = $otcrediti_iniziali;					# Soldi iniziali di ogni giocatore
 		$max_calciatori = $otnumcalciatori; 					# Numero massimo di calciatori che si possono possedere
 		$composizione_squadra = explode("-",$otcomposizione_squadra); # $composizione_squadra = array("38806","38725","38815","38716");
-		$numero_cambi_max = $otnumero_cambi_max; 				# in mercato libero è il massimo dei cambi consentiti
+		$numero_cambi_max = $otnumero_cambi_max; 				# in mercato libero &egrave; il massimo dei cambi consentiti
 		$rip_cambi_numero = $otrip_cambi_numero; 				# cambi consentiti nel mercato di riparazione - Impostare a 0 per disabilitare il mercato di riparazione
 		$rip_cambi_giornate = explode("-",$otrip_cambi_giornate); 	# giornate dopo le quali si effettua il mercato di riparazione
 		$rip_cambi_durata = $otrip_cambi_durata; 				# durata del mercato di riparazione - Impostare a 1 per applicare il regolamento gazzetta 2005-2006 - 0 per applicare il reolamento 2004-2005
 		$modificatore_difesa = $otmodificatore_difesa; 			# impostazione per il calcolo del punteggio con modificatore solo per campionato libero
 		$schemi = explode("-",$otschemi); 						# Gli schemi di gioco utilizzabili. Gli schemi a 5 numeri servono solo se si usano i fantasisti. Si possono aggiungere o togliere schemi.
-		$max_in_panchina = $otmax_in_panchina;					# Numero di calciatori in panchina e quanti ne possono entrare. Si possono fare sostituzioni per ruolo (il calciatore entra se un'altro del suo ruolo non ha giocato) o per schema (il calciatore entra se entrando lo schema che si forma è tra quelli consentiti). Se sia per ruolo che per schema sono a SI si sostituisce prima per ruolo.
+		$max_in_panchina = $otmax_in_panchina;					# Numero di calciatori in panchina e quanti ne possono entrare. Si possono fare sostituzioni per ruolo (il calciatore entra se un'altro del suo ruolo non ha giocato) o per schema (il calciatore entra se entrando lo schema che si forma &egrave; tra quelli consentiti). Se sia per ruolo che per schema sono a SI si sostituisce prima per ruolo.
 		$panchina_fissa = $otpanchina_fissa;					# impostare a "SI" per avere la panchina (1222 come PDCA) altrimenti "NO" (le maiuscole contano!)
 		$max_entrate_dalla_panchina = $otmax_entrate_dalla_panchina;
 		$sostituisci_per_ruolo = $otsostituisci_per_ruolo;		# impostare a "SI" o "NO" (le maiuscole contano!)
@@ -69,7 +69,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] >= 4) {
 		$vendi_costo = $otvendi_costo;
 		$percentuale_vendita = $otpercentuale_vendita; 			# Percentuale del costo pagato a cui si può rivendere subito il calciatore
 
-		# Dati per i campionati a scontri diretti. Servono solo se si è impostato un campionato a "S".
+		# Dati per i campionati a scontri diretti. Servono solo se si &egrave; impostato un campionato a "S".
 		$soglia_voti_primo_gol = $otsoglia_voti_primo_gol;
 		$incremento_voti_gol_successivi = $otincremento_voti_gol_successivi;
 		$voti_bonus_in_casa = $otvoti_bonus_in_casa;
@@ -146,7 +146,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] >= 4) {
 
 		if(!is_file($percorso_cartella_dati."/giornata".$tgiornata."_".$otid."_".$otserie)){
 			$continuare = "NO";
-			$errore[]="Il file giornata relativo non è presente! ".$percorso_cartella_dati."/giornata".$tgiornata."_".$otid."_".$otserie;
+			$errore[]="Il file giornata relativo non &egrave; presente! ".$percorso_cartella_dati."/giornata".$tgiornata."_".$otid."_".$otserie;
 		}
 
 		# vedo il tipo e la giornata di campionato

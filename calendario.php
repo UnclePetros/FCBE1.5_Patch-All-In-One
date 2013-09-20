@@ -101,7 +101,7 @@ for($num1 = 0 ; $num1 < $num_campionati; $num1++) {
 			if ($num_giocatori == 4 or $num_giocatori == 6 or $num_giocatori == 8 or $num_giocatori == 10 or $num_giocatori == 12 or $num_giocatori == 14 or $num_giocatori == 16 or $num_giocatori == 18 or $num_giocatori == 20) {
 				$attiva_scontri_diretti = "SI";
 			} # fine if ($num_giocatori == 4 or...
-			else echo "ERRORE: il numero di partecipanti ancora non è di 4, 6, 8, 10, 12, 14, 16, 18 o 20.<br/><br/>";
+			else echo "ERRORE: il numero di partecipanti ancora non &egrave; di 4, 6, 8, 10, 12, 14, 16, 18 o 20.<br/><br/>";
 
 			if ($attiva_scontri_diretti == "SI") {
 				$file_scontri = file($percorso_cartella_scontri."/squadre".$num_giocatori);

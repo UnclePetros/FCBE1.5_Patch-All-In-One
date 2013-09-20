@@ -23,7 +23,7 @@ require_once ("./inc/rec/sendmail_include.php");
 require_once("./inc/funzioni.php");
 
 $nuovapass = "Ciao [USER_NAME],\n
-La tua nuova password per accedere al tuo account ".$titolo_sito." è:\n
+La tua nuova password per accedere al tuo account ".$titolo_sito." &egrave;:\n
 [NEW_PASS]\n
 Saluti,
 ".$titolo_sito."\n";

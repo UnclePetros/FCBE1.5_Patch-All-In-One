@@ -29,8 +29,19 @@ function countdown($id,$tempo)
 	</style>
 	<script type='text/javascript' src='./inc/jquery.countdown.js'></script>
 	<script type='text/javascript'>
+	function serverTime() { 
+    var time = null; 
+    $.ajax({url: 'serverTime.php', 
+        async: false, dataType: 'text', 
+        success: function(text) { 
+            time = new Date(text); 
+        }, error: function(http, message, exc) { 
+            time = new Date(); 
+    }}); 
+    return time; 
+}
 	$(function () {
-	$('#$id').countdown({until: new Date($tempo), compact: true, format: 'odHMS', expiryText: '<div class=$id><b>Tempo scaduto</b></div>'});
+	$('#$id').countdown({until: new Date($tempo), serverSync: serverTime, compact: true, format: 'odHMS', expiryText: '<div class=$id><b>Tempo scaduto</b></div>'});
 	});
 	</script>";
 	
@@ -825,8 +836,9 @@ function getHtmlOutput ($k, $v){
 }
 
 function ultimi10($torneo){
+    global $percorso_cartella_dati;
 	$files = array();
-	$dhandle = opendir("./dati/messaggi") or die("impossibile aprire la directory dei messaggi");
+	$dhandle = opendir($percorso_cartella_dati."/messaggi") or die("impossibile aprire la directory dei messaggi");
 	while ($filei = readdir($dhandle)) {
 		if (($filei == ".") || ($filei == "..") || ($filei == "index.php")) {} else {
 			array_push($files, $filei);
@@ -844,7 +856,7 @@ function ultimi10($torneo){
 		$currMsg++; 
 		
 		if ($dato != "") {
-			$topic = file("./dati/messaggi/$dato");
+			$topic = file($percorso_cartella_dati."/messaggi/$dato");
 			$topicinfo = explode("|", $topic[0]);
 			if(trim($topicinfo[5]) == $torneo){
 				if($colore_prec == "#E6E6E6") {
@@ -1527,7 +1539,9 @@ function syntax_hilight($filename) {
 
 
 function tabella_squadre(){
-	$sq = file("./dati/squadre.txt");
+	global $percorso_cartella_dati;
+	$sq = file($percorso_cartella_dati."/squadre.txt");
+	echo "<center><div>".$acapo;
 	echo "<center><div>".$acapo;
 	
 	foreach($sq as $val) {
@@ -1542,7 +1556,7 @@ function tabella_squadre(){
 }
 
 function tabella_squadre_tra(){
-	$sq = file("./dati/squadre.txt");
+	$sq = file($percorso_cartella_dati."/squadre.txt");
 	echo "<center><div>".$acapo;
 	
 	foreach($sq as $val) {
@@ -1693,6 +1707,18 @@ function statsToHtml($dati, $squadra, $nome_giocatore){
 	}else {$stat_squadra = "Errore caricamento";}
 	
 	return $stat_squadra;
+}
+
+function cerca_proprietario($num_gio_cerc){
+	global $percorso_cartella_dati;
+	$calciatori_merc1 = @file($percorso_cartella_dati."/mercato_".$_SESSION[torneo]."_".$_SESSION[serie].".txt");
+	$num_calciatori_merc1 = count($calciatori_merc1);
+	for ($num21 = 0 ; $num21 < $num_calciatori_merc1 ; $num21++) {
+		$dati_calciatore_merc1 = explode(",", $calciatori_merc1[$num21]);		
+		$numero_merc1 = $dati_calciatore_merc1[0];
+		if ($num_gio_cerc == $numero_merc1) $proprietario_merc1 = $dati_calciatore_merc1[4];
+	}
+	return $proprietario_merc1;
 }
 
 ?>

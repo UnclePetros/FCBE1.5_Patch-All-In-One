@@ -25,7 +25,7 @@ else require ("./dati/dati_gen.php");
 include("./header.php");
 
 $data_busta_chiusa = @join('', @file("./dati/data_buste_".$_SESSION['torneo']."_0.txt"));
-
+$data_busta_precedente = @join('', @file("./dati/data_buste_precedente_".$_SESSION['torneo']."_0.txt"));
 if ($_SESSION['valido'] == "SI" or $escludi_controllo == "SI") {
 	require ("./menu.php");
 
@@ -69,24 +69,24 @@ if ($_SESSION['valido'] == "SI" or $escludi_controllo == "SI") {
 
 	$num_calciatori = count($cerca_valutazione);
 	$layout = "<table summary='Calciatori' width='100%' align='center' bgcolor='$sfondo_tab' id='t1' class='sortable'>
-	<caption>LISTA CALCIATORI</caption>
-	<tr>
-	<th class='testa'>&nbsp;&nbsp;Numero&nbsp;&nbsp;</th>
-	<th class='testa' width='30%'>Nome</th>
-	<th class='testa'>Ruolo</th>
-	<th class='testa'>Operazioni</th>
-	<th class='testa'>Valutazione</th>";
+	<caption>Elenco calciatori<br/>$frase_voti</caption>
+	<tr><th>&nbsp;&nbsp;Numero&nbsp;&nbsp;</th>
+	<th width='30%'>Nome</th>
+	<th>Ruolo</th>
+	<th>Operazioni</th>
+	<th>Valutazione</th>";
 
-	if ($mercato_libero == "SI") $layout .="<th class='testa' width='15%'>Costo iniziale</th>";
-	else $layout .="<th class='testa' width='15%'>Proprietario</th>";
+	if ($mercato_libero == "SI") $layout .="<th width='15%'>Costo iniziale</th>";
+	else $layout .="<th width='15%'>Proprietario</th>";
 
-	$layout .="<th class='testa' width='20%'>Squadra</th></tr>";
+	$layout .="<th width='20%'>Squadra</th></tr>";
 
-	$colore_prec = "";
+
+	
 	for ($num1 = 0 ; $num1 < $num_calciatori ; $num1++) {
 
 		$valore_mercato = " - ";
-
+			$tempo_restante = "";
 		$dati_calciatore = explode($separatore_campi_file_calciatori, $cerca_valutazione[$num1]);
 		$numero = $dati_calciatore[($num_colonna_numcalciatore_file_calciatori-1)];
 		$numero = trim($numero);
@@ -106,7 +106,7 @@ if ($_SESSION['valido'] == "SI" or $escludi_controllo == "SI") {
 		$attivo = trim($attivo);
 
 		$adesso = mktime(date("H"),date("i"),0,date("m"),date("d"),date("Y"));
-
+		
 		if ($considera_fantasisti_come != "P" AND $considera_fantasisti_come != "D" AND $considera_fantasisti_come != "C" AND $considera_fantasisti_come != "A") $considera_fantasisti_come = "F";
 		if ($s_ruolo == $simbolo_fantasista_file_calciatori) $ruolo = $considera_fantasisti_come;
 		if ($s_ruolo == $simbolo_portiere_file_calciatori) $ruolo = "P";
@@ -134,10 +134,14 @@ if ($_SESSION['valido'] == "SI" or $escludi_controllo == "SI") {
 			$proprietario = "<font color='navy' size='1'>Svincolato</font>";
 			$propr_c = "";
 			$props = "";
+
 			$calciatori_merc = @file($percorso_cartella_dati."/mercato_".$_SESSION[torneo]."_".$_SESSION[serie].".txt");
 			$num_calciatori_merc = count($calciatori_merc);
 			$n = $num_calciatori_merc -1;
 
+			#####################‡‡
+
+			
 			for ($num2 = 0 ; $num2 < $num_calciatori_merc ; $num2++) {
 				$dati_calciatore_merc = explode(",", $calciatori_merc[$num2]);
 				
@@ -154,13 +158,11 @@ if ($_SESSION['valido'] == "SI" or $escludi_controllo == "SI") {
 				$proprietario_merc = $dati_calciatore_merc[4];
 				$tempo_off = $dati_calciatore_merc[5];
 				$tempo_off_mer=0;
-
 				if ($numero_merc == $numero) {
 					$props .= "$proprietario_merc ";
 					if ($proprietario_merc == $_SESSION['utente']) {
 						$propr_c = $proprietario_merc;
 					}
-
 					if ($sec_restanti > 1) {
 						$tempo_restante = "";
 						$giorni=floor($sec_restanti/86400);
@@ -185,33 +187,51 @@ if ($_SESSION['valido'] == "SI" or $escludi_controllo == "SI") {
 						}
 						if ($giorni == 0 AND $ore == 0 AND $minuti == 0 AND $secondi_resto > 0) $tempo_restante .= $secondi_resto." secondi";
 						unset($giorni,$ore,$minuti,$secondi_resto);
+									
 						$t_r="$tempo_restante - <a href='offerta.php?num_calciatore=$numero&amp;valutazione=$valutazione&amp;xsquadra_ok=$xsquadra_ok&amp;mercato_libero=$mercato_libero' class='user'>rilancia</a>";
-					}else {
-						$t_r= "----";
-					}
-
+					}else {$t_r= "----";}
+						
 					if ($stato_mercato != "B") $proprietario = "<font color='red' size='-2'>$proprietario_merc</font>";
 					$tempo_off_mer = $tempo_off;
+
+						
+                    if ($stato_mercato == "B" )   {
+                        $proprietario = "<font color='red' size='-2'>". $_SESSION['utente']." </font>";
+						if ($propr_c != $_SESSION['utente'] AND (double)substr($tempo_off_mer,0,12) <= (double)substr($data_busta_precedente,0,12) ) {
+							$proprietario = "<font color='red' size='-2'>$proprietario_merc</font>";
+							$azione = "<a >Venduto</a>"; 
+						}
+                    }
+					                    
 				}
 			} # fine for $num2
 
 			if ($mercato_libero == "NO"){
 				if ($stato_mercato == "B"){
 		            $ultima_riga = explode(",",$calciatori_merc[$n]);
-            if($ultima_riga[0]=="" AND $n > 1) $diff_giri = $ultima_riga[1] - $data_busta_chiusa;
-            else $diff_giri = 0;
-        if (strlen($tempo_off_mer)==16) $tempo_off_mer = substr($tempo_off_mer,0,12);
-            $diff = $tempo_off_mer - $data_busta_chiusa;
-					if($propr_c == $_SESSION['utente'] AND ($diff == "0" OR $diff == $diff_giri)){ $azione = "Acquisito nella Busta";
+					if($ultima_riga[0]=="" AND $n > 1) $diff_giri = $ultima_riga[1] - $data_busta_chiusa;
+					else $diff_giri = 0;
+				if (strlen($tempo_off_mer)==16) $tempo_off_mer = substr($tempo_off_mer,0,12);
+					$diff = $tempo_off_mer - $data_busta_chiusa;
+				if($propr_c == $_SESSION['utente'] AND ($diff == "0" OR $diff == $diff_giri)){ $azione = "Acquisito nella Busta";
 					$proprietario = "<font color='red' size='-2'>$_SESSION[utente]</font>";
 				}
 				elseif ($propr_c == $_SESSION['utente']) $azione = "Inserito nella Busta";
 				elseif ($propr_c != $_SESSION['utente'] AND ($diff == 0 OR $diff == $diff_giri)){
-					$azione = "<a href=\"scambia.php?num_calciatore=$numero&amp;altro_utente=$proprietario_merc\" class=\"user\">scambia</a>";
-					$proprietario = "<font color='red' size='-2'>$propr_c</font>";
-				}
-				elseif ($propr_c != $_SESSION['utente']) $azione = "<a href=\"busta_offerta.php?num_calciatore=$numero&valutazione=$valutazione&xsquadra_ok=$xsquadra_ok&mercato_libero=$mercato_libero\" class=user>offri</a>";
-			} #fine if ($stato_mercato=B)
+                         $azione = "<a href=\"scambia.php?num_calciatore=$numero&amp;altro_utente=$proprietario_merc\" class=\"user\">scambia</a>";
+                         $proprietario = "<font color='red' size='-2'>$propr_c</font>";
+                    }
+                    
+				elseif ($propr_c != $_SESSION['utente'] AND !isset($azione)){
+                 $azione = "<a href=\"busta_offerta.php?num_calciatore=$numero&valutazione=$valutazione&xsquadra_ok=$xsquadra_ok&mercato_libero=$mercato_libero\" class=user>offri</a>";
+                 $proprietario = "<font color='navy' size='1'>Svincolato</font>";
+                }      
+              //  elseif ($propr_c != $_SESSION['utente']) $azione = "<a href=\"busta_offerta.php?num_calciatore=$numero&valutazione=$valutazione&xsquadra_ok=$xsquadra_ok&mercato_libero=$mercato_libero\" class=user>offri</a>";
+                 
+
+                //elseif (isset($dati_calciatore_merc[4])) $azione = "Venduto";
+				} #fine if ($stato_mercato=B)
+			
 			elseif ($proprietario == "<font color='navy' size='1'>Svincolato</font>" AND $stato_mercato == "I") $azione = "<a href='offerta.php?num_calciatore=$numero&amp;valutazione=$valutazione&amp;xsquadra_ok=$xsquadra_ok&amp;mercato_libero=$mercato_libero&amp;ruolos=$ruolo' class='user'>offri</a>";
 			elseif ($proprietario == "<font color='navy' size='1'>Svincolato</font>" AND $stato_mercato == "B") $azione = "<a href='busta_offerta.php?num_calciatore=$numero&amp;valutazione=$valutazione&amp;xsquadra_ok=$xsquadra_ok&amp;mercato_libero=$mercato_libero' class='user'>offri con busta</a>";
 			elseif ($proprietario == "<font color='navy' size='1'>Svincolato</font>" AND $stato_mercato == "R") $azione = "<a href='compra.php?num_calciatore=$numero&amp;valutazione=$valutazione&amp;xsquadra_ok=$xsquadra_ok' class='user'>compra</a>";
@@ -219,15 +239,20 @@ if ($_SESSION['valido'] == "SI" or $escludi_controllo == "SI") {
 			elseif ($proprietario == "<font color='navy' size='1'>Svincolato</font>" AND $stato_mercato == "A") $azione = "<a href='offerta.php?num_calciatore=$numero&amp;valutazione=$valutazione&amp;xsquadra_ok=$xsquadra_ok&amp;mercato_libero=$mercato_libero&amp;ruolos=$ruolo' class='user'>offri</a>";
 			elseif ($_SESSION['utente'] != $propr_c AND $stato_mercato == "B") $azione = "<a href='busta_offerta.php?num_calciatore=$numero&amp;valutazione=$valutazione&amp;xsquadra_ok=$xsquadra_ok&amp;mercato_libero=$mercato_libero' class='user'>offri con busta</a>";
 			elseif ($_SESSION['utente'] != $propr_c AND $stato_mercato == "I") $azione = $t_r;
-			elseif ($_SESSION['utente'] != $propr_c AND $stato_mercato == "P") $azione = "<a href='scambia.php?num_calciatore=$numero&amp;altro_utente=$proprietario_merc' class='user'>scambia</a>";
-			elseif ($_SESSION['utente'] != $propr_c AND $stato_mercato == "S") $azione = "<a href='scambia.php?num_calciatore=$numero&amp;altro_utente=$proprietario_merc' class='user'>scambia</a>";
-			elseif ($_SESSION['utente'] != $propr_c AND $stato_mercato == "A") $azione = "<a href='scambia.php?num_calciatore=$numero&amp;altro_utente=$proprietario_merc' class='user'>scambia</a>";
-
+			elseif ($_SESSION['utente'] != $propr_c AND $stato_mercato == "P") $azione = "<a href='offerta.php?num_calciatore=$numero&amp;valutazione=$valutazione&amp;xsquadra_ok=$xsquadra_ok&amp;mercato_libero=$mercato_libero' class='user'>offri</a>";
+			elseif ($_SESSION['utente'] != $propr_c AND $stato_mercato == "S") {
+					$ppr1= cerca_proprietario($numero);
+					$azione = "<a href='scambia.php?num_calciatore=$numero&amp;altro_utente=$ppr1' class='user'>scambia</a>";
+					}
+			elseif ($_SESSION['utente'] != $propr_c AND $stato_mercato == "A") {
+					$ppr= cerca_proprietario($numero);
+					$azione = "<a href='scambia.php?num_calciatore=$numero&amp;altro_utente=$ppr' class='user'>scambia</a>";
+					}
 			elseif ($_SESSION['utente'] == $propr_c AND $stato_mercato == "B") $azione = "<a href='busta_vendi.php?num_calciatore=$numero' class='user'>togli dalla busta</a>";
-			elseif ($_SESSION['utente'] == $propr_c AND $stato_mercato == "I") $azione = "Di propriet&agrave;";
+			elseif ($_SESSION['utente'] == $propr_c AND $stato_mercato == "I") $azione = "<a href='vendi.php?num_calciatore=$numero' class='user'>vendi</a>";
 			elseif ($_SESSION['utente'] == $propr_c AND $stato_mercato == "R") $azione = "<a href='vendi.php?num_calciatore=$numero' class='user'>vendi</a>";
 			elseif ($_SESSION['utente'] == $propr_c AND $stato_mercato == "A") $azione = "<a href='vendi.php?num_calciatore=$numero' class='user'>vendi</a>";
-			elseif ($_SESSION['utente'] == $propr_c AND $stato_mercato == "P") $azione = "<a href='vendi.php?num_calciatore=$numero' class='user'>vendi</a>";
+			elseif ($_SESSION['utente'] == $propr_c AND $stato_mercato == "P" AND $tempo_restante == "") $azione = "<a href='vendi.php?num_calciatore=$numero' class='user'>vendi</a>";
 
 			else $azione = "-";
 		}
@@ -240,27 +265,16 @@ if ($_SESSION['valido'] == "SI" or $escludi_controllo == "SI") {
 			else $azione = "-";
 		}
 		else $azione = "Errore di configurazione";
-		
-		if($calciatoriLiberi == "liberi" && $proprietario != "<font color='navy' size='1'>Svincolato</font>"){
-			continue;
-		}
 
 		if ($stato_mercato == "C") $azione = "Mercato chiuso";
 		if ($attivo == "0")  $azione = "<font color='red'><b>Trasferito</b></font>";
-		if ($colore_prec == $colore_riga_alt){ 
-			$colore="#FFFFFF";
-			$colore_prec = "#FFFFFF";
-		}
-		else {
-			$colore="$colore_riga_alt";
-			$colore_prec="$colore_riga_alt";
-		}
+		if ($num1 % 2) $colore="#FFFFFF"; else $colore="$colore_riga_alt";
 		if ($blocco == 1) $azione = "<font color='red'>Attendere aggiornamento</font>";
-
+		
 		if ($stato_mercato != "I") $link_info = "<a href='stat_calciatore.php?num_calciatore=$numero&amp;ruolo_guarda=$ruolo_guarda' class='user'>$numero</a>";
 		else $link_info = "<u>$numero</u>";
 
-		if ($stato_mercato == "A" AND $mercato_libero == "SI" AND $props) $info = "<img src='./immagini/info1.gif' style='border:0; margin:0;' title='$props' alt='$props' />";
+		if ($stato_mercato == "A" AND $mercato_libero == "SI" AND $props AND $pallinogiallo == "SI") $info = "<img src='./immagini/info1.gif' style='border:0; margin:0;' title='$props' alt='$props' />";
 
 		$layout .="<tr bgcolor=$colore>
 		<td align='center'>$link_info</td>
@@ -274,10 +288,10 @@ if ($_SESSION['valido'] == "SI" or $escludi_controllo == "SI") {
 
 		$layout .="<td align='center'><a href='tab_squadre.php?vedi_squadra=$xsquadra' class='user'>$xsquadra</a></td></tr>";
 	} # fine if ($ruolo == $ruolo_guarda or ...)
-	UNSET($azione,$nome,$propr_c,$ruolo,$valutazione,$costo,$proprietario,$xsquadra,$props,$info);
+	UNSET($azione,$nome,$propr_c,$ruolo,$valutazione,$costo,$proprietario,$xsquadra,$props,$info,$tempo_restante);
 } # fine for $num1
 $layout .="</table>";
-schedeRuoli_lista($ruolo_guarda,$calciatoriLiberi,"#042e7b","tab_calciatori.php?ruolo_guarda");
+tabella_squadre();
 echo "<script type='text/javascript' src='./inc/js/ordina_tabella.js'></script>";
 echo $layout;
 } # fine if ($pass_errata != "SI")

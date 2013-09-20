@@ -38,13 +38,15 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 
 	if ($otmercato_libero == "SI") $mess1 = "Il torneo si volge a mercato libero, che significa che tutti i giocatori possono acquistare qualsiasi calciatore, indipendentemente dal fatto che possa essere stato acquistato da altri giocatori; si dispongono di <b>$otnumero_cambi_max</b> cambi di calciatore per tutte la stagione, oltre alle eventuali giornate di riparazione.";
 	elseif ($otmercato_libero == "NO") $mess1 = "Il torneo si volge con una asta iniziale, durante la quale vendono assegnati i calciatori al maggior offerente.";
-	else $mess1 = "<div class='evidenziato'>ERRORE: il tipo di mercato non è valido.</div>";
+	else $mess1 = "<div class='evidenziato'>ERRORE: il tipo di mercato non &egrave; valido.</div>";
 
 	$mess2 = "Tipo calcolo: $ottipo_calcolo";
 	$mess3 = "Stato: $otstato";
 
 	if (file_exists($percorso_cartella_dati."/mercato_".$otid."_".$otserie.".txt")) $dati_mercato = @file($percorso_cartella_dati."/mercato_".$otid."_".$otserie.".txt");
 	else unset($dati_mercato);
+	
+	$num_calciatori = count($dati_mercato);
 	
 	if(isset($dati_mercato)){
 		$a_mercato = array();
@@ -79,7 +81,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 	if (isset($dati_utenti)) {
 		$dati_utenti = array_slice($dati_utenti,1);
 		$a_utenti = array();
-		foreach($dati_utenti AS $dati){
+		foreach($dati_utenti AS $dati){	
 			$d=explode("<del>",trim($dati));
 			$a_utenti[trim($d[0])][]=trim($d[2]); 							# permessi
 			$a_utenti[trim($d[0])][]=trim($d[3]); 							# email
@@ -93,12 +95,13 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 			$a_utenti[trim($d[0])][]=trim($d[11]); 							# cambi
 			$a_utenti[trim($d[0])][]=count($a_mercato[trim($d[0])]['num']); 		# calciatori acquistati
 			$a_utenti[trim($d[0])][]=@array_sum($a_mercato[trim($d[0])]['val']); 	# valutazione squadra
-			$a_utenti[trim($d[0])][]=@array_sum($a_mercato[trim($d[0])]['valagg']); 	# valutazione squadra aggiornata
+			$a_utenti[trim($d[0])][]=@array_sum($a_mercato[trim($d[0])]['valagg']); 	# valutazione squadra aggiornata	
+			$a_utenti[trim($d[0])][]=$otcrediti_iniziali - (@array_sum($a_mercato[trim($d[0])]['val'])-$d[10]);
 		}
 	}
-	/* echo "<pre style='text-align: left'>";
+	/*echo "<pre style='text-align: left'>";
 	print_r($a_utenti);
-	echo"</pre>"; */
+	echo"</pre>";*/
 
 	echo "<table bgcolor='$sfondo_tab' width='100%' border='0' cellspacing='0' cellpadding='5'>
 	<caption>
@@ -167,13 +170,13 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 
 			if (file_exists($percorso_cartella_dati."/squadra_$outente")) $ums = "<br />- modifica formazione: " . date ("d-m-Y H:i:s.", filemtime($percorso_cartella_dati."/squadra_".$outente));
 			else $ums = "&nbsp;";
-
+			
 			echo "<tr align='center' valign='middle' bgcolor='$colore'>
 			<td align='center'>$num1</td>
 			<td align='left'><a href='a_modUtente.php?cambia=$num1&amp;itorneo=$itorneo' class='info'>".htmlentities($outente, ENT_QUOTES)."<span class='infobox'><u><b>Info ".htmlentities($outente, ENT_QUOTES)."</b></u><br/>- permessi: $opermessi<br/>- torneo: $otorneo<br/>- serie: $oserie<br/>- citt&agrave;: $ocitta<br/>- registrato il $oreg $ums</span></a></td>
 			<td align='left'>$osquadra (".$a_utenti[$outente][10].") $link_sito</td>
 			<td align='center'>".$a_utenti[$outente][11]." - ".$a_utenti[$outente][12]." - $ovariazioni</td>
-			<td align='center'>$ocrediti</td>
+			<td align='center'>".$a_utenti[$outente][13]."</td>
 			<td align='center'>$ocambi</td>
 			<td align='center'><img src='./immagini/no.gif' style='vertical-align: middle' alt='Cancella utente' />&nbsp;&nbsp;<a href='a_eliUtente.php?del=$num1&amp;itorneo=$itorneo&amp;gt=1'> Cancella</a></td>
 			<td align='center'><img src='./immagini/email.png' style='vertical-align: middle' alt='Invia mail' />&nbsp;&nbsp;<a href='mailto:$oemail?subject=Comunicazione da Fantacalciobazar'>Invia mail</a></td>
@@ -454,13 +457,13 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 		$max_calciatori = $otnumcalciatori; 					# Numero massimo di calciatori che si possono possedere
 		$tipo_messaggeria = $temp1;								# 0=pubblica 1=privata
 		$composizione_squadra = explode("-",$otcomposizione_squadra); # $composizione_squadra = array("38806","38725","38815","38716");
-		$numero_cambi_max = $otnumero_cambi_max; 				# in mercato libero è il massimo dei cambi consentiti
+		$numero_cambi_max = $otnumero_cambi_max; 				# in mercato libero &egrave; il massimo dei cambi consentiti
 		$rip_cambi_numero = $otrip_cambi_numero; 				# cambi consentiti nel mercato di riparazione - Impostare a 0 per disabilitare il mercato di riparazione
 		$rip_cambi_giornate = explode("-",$otrip_cambi_giornate); 	# giornate dopo le quali si effettua il mercato di riparazione
 		$rip_cambi_durata = $otrip_cambi_durata; 				# durata del mercato di riparazione - Impostare a 1 per applicare il regolamento gazzetta 2005-2006 - 0 per applicare il reolamento 2004-2005
 		$modificatore_difesa = $otmodificatore_difesa; 			# impostazione per il calcolo del punteggio con modificatore solo per campionato libero
 		$schemi = explode("-",$otschemi); 						# Gli schemi di gioco utilizzabili. Gli schemi a 5 numeri servono solo se si usano i fantasisti. Si possono aggiungere o togliere schemi.
-		$max_in_panchina = $otmax_in_panchina;					# Numero di calciatori in panchina e quanti ne possono entrare. Si possono fare sostituzioni per ruolo (il calciatore entra se un'altro del suo ruolo non ha giocato) o per schema (il calciatore entra se entrando lo schema che si forma è tra quelli consentiti). Se sia per ruolo che per schema sono a SI si sostituisce prima per ruolo.
+		$max_in_panchina = $otmax_in_panchina;					# Numero di calciatori in panchina e quanti ne possono entrare. Si possono fare sostituzioni per ruolo (il calciatore entra se un'altro del suo ruolo non ha giocato) o per schema (il calciatore entra se entrando lo schema che si forma &egrave; tra quelli consentiti). Se sia per ruolo che per schema sono a SI si sostituisce prima per ruolo.
 		$panchina_fissa = $otpanchina_fissa;					# impostare a "SI" per avere la panchina (1222 come PDCA) altrimenti "NO" (le maiuscole contano!)
 		$max_entrate_dalla_panchina = $otmax_entrate_dalla_panchina;
 		$sostituisci_per_ruolo = $otsostituisci_per_ruolo;		# impostare a "SI" o "NO" (le maiuscole contano!)
@@ -474,7 +477,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 		$vendi_costo = $otvendi_costo;
 		$percentuale_vendita = $otpercentuale_vendita; 			# Percentuale del costo pagato a cui si può rivendere subito il calciatore
 
-		# Dati per i campionati a scontri diretti. Servono solo se si è impostato un campionato a "S".
+		# Dati per i campionati a scontri diretti. Servono solo se si &egrave; impostato un campionato a "S".
 		$soglia_voti_primo_gol = $otsoglia_voti_primo_gol;
 		$incremento_voti_gol_successivi = $otincremento_voti_gol_successivi;
 		$voti_bonus_in_casa = $otvoti_bonus_in_casa;
@@ -1164,7 +1167,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 		- Percentuale vendita = 100<br /><br />
 		<b>Aprire le buste</b><br /><br />
 		Quando si decide di aprire le buste bisogna entrare come admin e lanciare il link 'Apri BSuste'.<br />
-		Appena cliccato questo link vedrete un messaggio che vi dice che la busta è stata aperta ma che se volete fare un altro giro di buste chiuse dovete modificare a mano la data di offerta in mercato.txt con quella della variabile data_busta_chiusa<br />
+		Appena cliccato questo link vedrete un messaggio che vi dice che la busta &egrave; stata aperta ma che se volete fare un altro giro di buste chiuse dovete modificare a mano la data di offerta in mercato.txt con quella della variabile data_busta_chiusa<br />
 		A questo punto decidete voi se cambiare lo stato del mercato e tutte le altre variabili a vostro piacimento oppure continuare un'altra busta chiusa. Nel caso si deci di farlo dovete solo modificare la variabile data_busta_chiusa in un tempo futuro.
 		</div>";
 	}
