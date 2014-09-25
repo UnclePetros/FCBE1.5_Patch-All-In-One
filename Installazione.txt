@@ -1,4 +1,4 @@
-PATCH ALL-IN-ONE Ver 2.0 su 1.6 rev.231
+PATCH ALL-IN-ONE Ver 2.94 su 1.5 rev.255
 
 Prima di cominciare, fate sempre un backup dei vostri dati e del vostro sito!
 

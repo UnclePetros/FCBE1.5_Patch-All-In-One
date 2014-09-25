@@ -51,7 +51,7 @@ if ($menu_lato == "SI" AND $_SESSION['permessi'] <= 4 AND $_SESSION['valido'] ==
 		echo "<a href='./squadra.php' >Gestione Rosa</a>$acapo";
 		echo "<a href='./gestione_formazione.php' >Gestione Formazione</a>$acapo";
 		if ($mercato_libero == "SI" AND $stato_mercato == "A") echo "<a href='./cambi.php' >Cambi</a>$acapo";
-		if ($mercato_libero == "SI" AND $stato_mercato == "A") echo "<a href='./cambi_tra.php' >Cambia Trasferiti</a>$acapo";
+		if ($mercato_libero == "SI" AND $stato_mercato == "A" AND $trasferiti_ok=="SI") echo "<a href='./cambi_tra.php' >Cambia Trasferiti</a>$acapo";
 	}
 	elseif ($chiusura_giornata == 1 ) echo "<a href='./squadra1.php' >Formazioni attuali</a>$acapo";
 

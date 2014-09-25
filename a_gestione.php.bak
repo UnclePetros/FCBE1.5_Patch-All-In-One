@@ -328,24 +328,7 @@ if ($timestamp > filemtime($file_mcc)) { //otherwise unknown
 	</form></div>";
 	
 	if ($flag_ritardo == 0 and $ultima_gio==00) {
-############################### file calciatori
 
-if (@fopen('http://fcbe.sssr.it/dati/'.$cartella_remota.'/MCC00.txt', 'r')) $clfv = "http://fcbe.sssr.it/dati/'.$cartella_remota.'/MCC00.txt";
-	elseif (@fopen('http://fantadownload.altervista.org/mirrorFCBE/dati/'.$cartella_remota.'/calciatori.txt', 'r')) $clfv = "http://fantadownload.altervista.org/mirrorFCBE/dati/".$cartella_remota."/calciatori.txt";
-	else {
-		$clfv = "NO";
-		$dis1="disabled='disabled'";}
-	
-	$file_voti_localec = "./dati/calciatori.txt";
-	$gh=date ("j/n/Y", filemtime($file_voti_localec));
-#########################	controllo presenza voti --> disattivo pulsante calciatori
-#	$ultima=ultima_giornata_giocata();
-#	if (@fopen("$percorso_cartella_voti/voti$ultima.txt", 'r')) $dis1="disabled='disabled'";
-#		else $dis1="";
-
-	#if ($clfv == "NO") $tabella_giornate .= "<div style='float: left; padding: 5px;'>Calciatori.txt non disponibile!</div>";
-	#elseif (@fopen($file_voti_localec,'r')) $tabella_giornate .= "<div style='float: left; padding: 5px;'>calciatori.txt presente!<br />Si può aggiornare!</div>";
-	
 	$tabella_giornate .= "<div style='float: left; padding: 5px;'><form method='post' action='./a_gestione.php'>
 		<input type='hidden' name='ccfv' value='SI' />
 		<input type='hidden' name='clfv' value='$clfv' />

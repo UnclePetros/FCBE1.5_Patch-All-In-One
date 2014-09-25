@@ -37,7 +37,6 @@ if ($_SESSION['permessi'] == 5) {
 	<a href='./a_upload.php'>Upload voti</a>
 	<a href='./a_invia_voti.php'>Invia formazioni</a>
 	<a href='./a_invia_risultati.php'>Invia risultati</a>
-	<a href='http://fantacalciobazar.sssr.it/risorse.php' target='_blank'>Download voti</a>
 	</div>
 	<div class='testa1' style='padding:3px; margin: 1px'>C O N T E N U T I</div>
 	<div class='menu_s' style='text-align:left; background-color: $sfondo_tab3; color: $carattere_colore_chiaro'>

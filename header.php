@@ -61,7 +61,14 @@ caption {
 <?php
 if ($a_fm == "SI") echo"<link rel='stylesheet' type='text/css' href='./inc/fm_style.css' />".$acapo;
 ?>
-<script type="text/javascript" src="./inc/js/jquery.js"></script>
+
+<!--[if lt IE 9]>
+	<script src="./inc/js/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]>
+	<script src="./inc/js/jquery-2.0.3.min.js"></script>
+<![endif]-->
+
 <script type="text/javascript" src="./inc/js/gestioneFormazione.js"></script>
 <script type="text/javascript">
 /* <![CDATA[ */

@@ -66,6 +66,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] >= 4) {
 
 	if ($cancella_giornata == "SI"){
 		$filego=$percorso_cartella_dati."/giornata".$giornata."_".$n_torneo."_".$n_serie;
+		 unlink($percorso_cartella_voti."/voti".$giornata.".txt");
 		if (!unlink($filego)) { echo "Cancellazione di $filego non riuscita ...\n"; }
 		$ripristina_originale == "NO";
 		
