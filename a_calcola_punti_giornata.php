@@ -461,7 +461,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] >= 4) {
 
 									if ($sostituisci_per_ruolo != "SI") {
 										${$formazione}[$num2] = togli_acapo(${$formazione}[$num2]);
-										${$formazione}[$num2] .= ",".$voto_tot[$num_calciatore]."\r\n";
+										${$formazione}[$num2] .= ",".$voto_tot[$num_calciatore].",".$voto_giornale[$num_calciatore]."\r\n";
 									} # fine if ($sostituisci_per_ruolo != "SI")
 
 									if ($ruolo_calc == "P") $pos_ruolo = 0;
@@ -496,7 +496,6 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] >= 4) {
 									if ($schema_valido == "SI") {
 										$nome_calc = str_replace('&#039;','\'',htmlentities ($dati_calciatore[1], ENT_QUOTES));
 										${$formazione}[$num2] = ereg_replace("$nome_calc","<b>$nome_calc</b>",${$formazione}[$num2]);
-										${$formazione}[$num2] .= ",".$voto_tot[$num_calciatore].",".$voto_giornale[$num_calciatore]."\r\n";
 										$voti_tot[$outente] = $voti_tot[$outente] + $voto_tot[$num_calciatore];
 										$entrati_dalla_panchina++;
 										$num_ruolo_attuale = substr($schema_attuale,$pos_ruolo,1);
