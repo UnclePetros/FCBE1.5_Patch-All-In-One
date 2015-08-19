@@ -20,7 +20,7 @@
 require_once("./controlla_pass.php");
 include("./header.php");
 
-if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user) {
+if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 	require ("./a_menu.php");
 
 	
@@ -281,7 +281,7 @@ if ($ultima_gio==00) {
 	curl_setopt($curl, CURLOPT_FILETIME, true);
 	$result = curl_exec($curl);
 	if ($result === false) {
-		die (curl_error($curl)); }
+		echo "Cartella remota mancante"; }
 	$timestamp = curl_getinfo($curl, CURLINFO_FILETIME);
 
 if ($timestamp > filemtime($file_voti_localec)) { //otherwise unknown

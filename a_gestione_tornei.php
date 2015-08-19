@@ -34,7 +34,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 	} # fine if ($messgestutente)
 
 	$tornei = @file($percorso_cartella_dati."/tornei.php");
-	@list($otid, $otdenom, $otpart, $otserie, $otmercato_libero, $ottipo_calcolo, $otgiornate_totali, $otritardo_torneo, $otcrediti_iniziali, $otnumcalciatori, $otcomposizione_squadra, $temp1, $temp2, $temp3, $temp4, $otstato, $otmodificatore_difesa, $otschemi, $otmax_in_panchina, $otpanchina_fissa, $otmax_entrate_dalla_panchina, $otsostituisci_per_ruolo, $otsostituisci_per_schema,  $otsostituisci_fantasisti_come_centrocampisti, $otnumero_cambi_max, $otrip_cambi_numero, $otrip_cambi_giornate, $otrip_cambi_durata, $otaspetta_giorni, $otaspetta_ore, $otaspetta_minuti, $otnum_calciatori_scambiabili, $otscambio_con_soldi, $otvendi_costo, $otpercentuale_vendita, $otsoglia_voti_primo_gol, $otincremento_voti_gol_successivi, $otvoti_bonus_in_casa, $otpunti_partita_vinta, $otpunti_partita_pareggiata, $otpunti_partita_persa, $otdifferenza_punti_a_parita_gol, $otdifferenza_punti_zero_a_zero, $otdifferenza_punti_prima_soglia_meno_sei, $otdifferenza_punti_gol_premio, $otmin_num_titolari_in_formazione, $otpunti_pareggio, $otpunti_pos, $otreset_scadenza) = explode(",", $tornei[$itorneo]);
+	@list($otid, $otdenom, $otpart, $otserie, $otmercato_libero, $ottipo_calcolo, $otgiornate_totali, $otritardo_torneo, $otcrediti_iniziali, $otnumcalciatori, $otcomposizione_squadra, $otquotacassa, $temp1, $temp2, $temp3, $temp4, $otstato, $otmodificatore_difesa, $otschemi, $otmax_in_panchina, $otpanchina_fissa, $otmax_entrate_dalla_panchina, $otsostituisci_per_ruolo, $otsostituisci_per_schema,  $otsostituisci_fantasisti_come_centrocampisti, $otnumero_cambi_max, $otrip_cambi_numero, $otrip_cambi_giornate, $otrip_cambi_durata, $otaspetta_giorni, $otaspetta_ore, $otaspetta_minuti, $otnum_calciatori_scambiabili, $otscambio_con_soldi, $otvendi_costo, $otpercentuale_vendita, $otsoglia_voti_primo_gol, $otincremento_voti_gol_successivi, $otvoti_bonus_in_casa, $otpunti_partita_vinta, $otpunti_partita_pareggiata, $otpunti_partita_persa, $otdifferenza_punti_a_parita_gol, $otdifferenza_punti_zero_a_zero, $otdifferenza_punti_prima_soglia_meno_sei, $otdifferenza_punti_gol_premio, $otmin_num_titolari_in_formazione, $otpunti_pareggio, $otpunti_pos, $otreset_scadenza) = explode(",", $tornei[$itorneo]);
 
 	if ($otmercato_libero == "SI") $mess1 = "Il torneo si volge a mercato libero, che significa che tutti i giocatori possono acquistare qualsiasi calciatore, indipendentemente dal fatto che possa essere stato acquistato da altri giocatori; si dispongono di <b>$otnumero_cambi_max</b> cambi di calciatore per tutte la stagione, oltre alle eventuali giornate di riparazione.";
 	elseif ($otmercato_libero == "NO") $mess1 = "Il torneo si volge con una asta iniziale, durante la quale vendono assegnati i calciatori al maggior offerente.";
@@ -109,6 +109,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 	</caption>
 	<tr align='center' valign='middle'>
 	<td><img src='immagini/1175.gif' alt='Utenti' width='32' height='32' /></td>
+	<td><img src='immagini/cassa.png' alt='Cassa' width='32' height='32' /></td>
 	<td><img src='immagini/788.gif' alt='Registro mercato' width='32' height='32' /></td>
 	<td><img src='immagini/825.gif' alt='Vedi squadre' width='32' height='32' /></td>
 	<td><img src='immagini/952.gif' alt='Vedi giornate' width='32' height='32' /></td>
@@ -117,10 +118,11 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 	echo "</tr>
 	<tr align='center' valign='middle'>
 	<td><a href='a_gestione_tornei.php?itorneo=$itorneo&amp;opzione=1'>Gestione utenti</a></td>
+	<td><a href='a_gestione_tornei.php?itorneo=$itorneo&amp;opzione=5'>Cassa</a></td>
 	<td><a href='a_gestione_tornei.php?itorneo=$itorneo&amp;opzione=2'>Registro mercato</a></td>
 	<td><a href='a_gestione_tornei.php?itorneo=$itorneo&amp;opzione=3'>Vedi squadre</a></td>
 	<td><a href='a_gestione_tornei.php?itorneo=$itorneo&amp;opzione=4'>Vedi giornate</a></td>
-	<td><a href='a_gestione_tornei.php?itorneo=$itorneo&amp;opzione=5'>Edita</a><br/>
+	<td>Edita<br/>
 	<a href='./a_edita_file.php?mod_file=".$percorso_cartella_dati."/utenti_".$itorneo.".php'><b>U</b></a> -
 	<a href='./a_edita_file.php?mod_file=".$percorso_cartella_dati."/mercato_".$itorneo."_0.txt'><b>M</b></a> -
 	<a href='./a_edita_file.php?mod_file=".$percorso_cartella_dati."/registro_mercato_".$itorneo."_0.txt'><b>R</b></a> -
@@ -158,7 +160,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 		</tr>";
 
 		for($num1 = 1 ; $num1 < $linee; $num1++) {
-			@list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocitta, $ocrediti, $ovariazioni, $ocambi, $oreg) = explode("<del>", trim($file[$num1]));
+			@list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocitta, $ocrediti, $ovariazioni, $ocambi, $oreg, $otitolari, $opanchina, $onome, $ocognome, $ocassa, $otemp4, $otemp5, $otemp6, $otemp7, $otemp8, $otemp9, $otemp0) = explode("<del>", trim($file[$num1]));
 			if ($ourl and $ourl != "http://") $link_sito = "&nbsp;&nbsp;&nbsp;(<a href='$ourl' target='_blank'>Sito web</a>)"; else unset($link_sito);
 			if ($num1 % 2) $colore="white"; else $colore=$colore_riga_alt;
 
@@ -190,7 +192,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 		$linee = count($filei);
 
 		for($num1 = 1 ; $num1 < $linee; $num1++) {
-			@list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocitta, $ocrediti, $ovariazioni, $ocambi, $oreg) = explode("<del>", $filei[$num1]);
+			@list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocitta, $ocrediti, $ovariazioni, $ocambi, $oreg, $otitolari, $opanchina, $onome, $ocognome, $ocassa, $otemp4, $otemp5, $otemp6, $otemp7, $otemp8, $otemp9, $otemp0) = explode("<del>", $filei[$num1]);
 			$ssquadra[$outente] = $osquadra;
 		}
 
@@ -220,7 +222,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 		$linee = count($file);
 
 		for($num1 = 1 ; $num1 < $linee; $num1++) {
-			@list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocitta, $ocrediti, $ovariazioni, $ocambi, $oreg) = explode("<del>", $file[$num1]);
+			@list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocitta, $ocrediti, $ovariazioni, $ocambi, $oreg, $otitolari, $opanchina, $onome, $ocognome, $ocassa, $otemp4, $otemp5, $otemp6, $otemp7, $otemp8, $otemp9, $otemp0) = explode("<del>", $file[$num1]);
 
 			if ($num1 % 2) $colore="white"; else $colore=$colore_riga_alt;
 
@@ -591,7 +593,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 		$file = @file($percorso_cartella_dati."/utenti_".$itorneo.".php");
 		$linee = count($file);
 		for ($num1 = 1 ; $num1 < $linee; $num1++) {
-			@list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocitta, $ocrediti, $ovariazioni, $ocambi, $oreg) = explode("<del>", $file[$num1]);
+			@list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocitta, $ocrediti, $ovariazioni, $ocambi, $oreg, $otitolari, $opanchina, $onome, $ocognome, $ocassa, $otemp4, $otemp5, $otemp6, $otemp7, $otemp8, $otemp9, $otemp0) = explode("<del>", $file[$num1]);
 			if ($opermessi != -1){
 				$nome_posizione[$num1] = $outente;
 				$soprannome_squadra = $osquadra;
@@ -764,20 +766,43 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 		$tab_formazioni</table>";
 	}
 	elseif ($opzione == 5){
-		echo "<div style='text-align:center; background-color: $sfondo_tab; margin-top:5px; margin-bottom:5px; padding: 5px; border: 1px solid $sfondo_tab2'>Slot libero per future implementazioni.</div>";
+        $file = @file($percorso_cartella_dati."/utenti_".$itorneo.".php");
+        $linee = count($file);
+        echo "<table bgcolor='$sfondo_tab' width='100%' cellpadding='1' cellspacing='0'>
+        <caption>Cassa utenti iscritti al torneo <b>$otdenom</b></caption>";
+        echo "<tr align='center' vaLign='middle' class='testa'>
+        <th>&nbsp;</th>
+        <th scope='col'>Nome utente</th>
+        <th scope='col'>Squadra</th>
+        <th scope='col'>Quota</th>
+        <th scope='col'>Versato</th>
+        <th scope='col'>Diff &#177;</th>
+        <th scope='col'>Email</th>
+        </tr>";
 
+        for($num1 = 1 ; $num1 < $linee; $num1++) {
+            @list($outente, $opass, $opermessi, $oemail, $ourl, $osquadra, $otorneo, $oserie, $ocitta, $ocrediti, $ovariazioni, $ocambi, $oreg, $otitolari, $opanchina, $onome, $ocognome, $ocassa, $otemp4, $otemp5, $otemp6, $otemp7, $otemp8, $otemp9, $otemp0) = explode("<del>", trim($file[$num1]));
+            #if ($ourl and $ourl != "http://") $link_sito = "&nbsp;&nbsp;&nbsp;(<a href='$ourl' target='_blank'>Sito web</a>)"; else unset($link_sito);
+            if ($num1 % 2) $colore="white"; else $colore=$colore_riga_alt;
+
+            echo "<tr align='center' valign='middle' bgcolor='$colore'>
+            <td align='center'>$num1</td>
+            <td align='left'><a href='a_modUtente.php?cambia=$num1&amp;itorneo=$itorneo' class='info'>".htmlentities($outente, ENT_QUOTES)."<span class='infobox'><u><b>Info ".htmlentities($outente, ENT_QUOTES)."</b></u><br/>- permessi: $opermessi<br/>- torneo: $otorneo<br/>- serie: $oserie<br/>- citt&agrave;: $ocitta<br/>- registrato il $oreg $ums</span></a></td>
+            <td align='left'>$osquadra (".$a_utenti[$outente][10].") $link_sito</td>
+            <td align='center'>$otquotacassa</td>
+            <td align='center'>".$ocassa."</td>
+            <td align='center'>".($ocassa-$otquotacassa)."</td>    
+            <td align='center'><img src='./immagini/email.png' style='vertical-align: middle' alt='Invia mail' />&nbsp;&nbsp;<a href='mailto:$oemail?subject=Comunicazione da Fantacalciobazar'>Invia mail</a></td>
+            </tr>";
+        }
+		echo "</table>";
 	}
 	elseif ($opzione == 6){
-
 		echo "<div style='text-align:center; background-color: $sfondo_tab; margin-top:5px; margin-bottom:5px; padding: 5px; border: 1px solid $sfondo_tab2'><a href='a_gestione_tornei.php?itorneo=$itorneo&amp;buste=1'><b>A</b>pri Buste</a> - <a href='./a_gestione_tornei.php?itorneo=$itorneo&amp;buste=2'><b>V</b>edi Buste Aperte</a> - <a href='./a_gestione_tornei.php?itorneo=$itorneo&amp;buste=3'><b>I</b>mposta Data Chiusura Buste</a>  - <a href='./a_gestione_tornei.php?itorneo=$itorneo&amp;buste=4'><b>M</b>anuale Utilizzo Buste</a><br />";
-
 	}
 	elseif ($buste == 1){
 
 		if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5)  {
-
-
-
 			// Variabili da impostare
 			$filename = "$percorso_cartella_dati/mercato_".$itorneo."_0.txt"; // Path completo del file
 			$sep = ","; // Separatore tra elementi della stessa riga
