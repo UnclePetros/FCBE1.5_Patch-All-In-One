@@ -206,7 +206,7 @@ if ($_SESSION['valido'] == "SI") {
 			
 			if($ruolo_calciatore == "P" ){
 				echo "<div id='row'><div id='blockrow' style='float:left;width:54%;border-right:1px solid #c3c3c3;border-top-right-radius:0px; border-bottom-right-radius:0px'>
-				<a href='#' onclick='gestisciInserimentoPortiereSuNome(this);return false;' cognome=\"$cognome_calciatore\" squadra='".strtolower($squadra_calciatore)."' style=\"background-image:url('immagini/m_".strtolower($squadra_calciatore).".png')\" onclick='gestisciInserimentoPortiere(this);return false;' cognome='".$cognome_calciatore."' codice='".$codice_calciatore."'>".$nome_calciatore."</a>
+				<a href='#' onclick='gestisciInserimentoPortiereSuNome(this);return false;' cognome=\"$cognome_calciatore\" squadra='".strtolower($squadra_calciatore)."' style=\"background-image:url('immagini/".strtolower($squadra_calciatore).".gif');background-position: -30px -15px\" onclick='gestisciInserimentoPortiere(this);return false;' cognome='".$cognome_calciatore."' codice='".$codice_calciatore."'>".$nome_calciatore."</a>
 				</div>";
 				echo "<div style='float:left;width:36%;height:22px;'>
 				$stat_squadra
@@ -243,7 +243,7 @@ if ($_SESSION['valido'] == "SI") {
 				
 		if($ruolo_calciatore == "D" ){
 				echo "<div id='row'><div id='blockrow' style='float:left;width:54%;border-right:1px solid #c3c3c3;border-top-right-radius:0px; border-bottom-right-radius:0px'>
-				<a href='#' onclick='gestisciInserimentoDifensoreSuNome(this);return false;' cognome=\"$cognome_calciatore\" squadra='".strtolower($squadra_calciatore)."' style=\"background-image:url('immagini/m_".strtolower($squadra_calciatore).".png')\" onclick='inserisciCessione(this);return false;' costo='".$costo_calciatore."' codice='".$codice_calciatore."'>".$nome_calciatore."</a>
+				<a href='#' onclick='gestisciInserimentoDifensoreSuNome(this);return false;' cognome=\"$cognome_calciatore\" squadra='".strtolower($squadra_calciatore)."' style=\"background-image:url('immagini/".strtolower($squadra_calciatore).".gif');background-position: -30px -15px\" onclick='inserisciCessione(this);return false;' costo='".$costo_calciatore."' codice='".$codice_calciatore."'>".$nome_calciatore."</a>
 				</div>";
 				echo "<div style='float:left;width:36%;height:22px;'>
 				$stat_squadra
@@ -280,7 +280,7 @@ if ($_SESSION['valido'] == "SI") {
 				
 		if($ruolo_calciatore == "C" ){
 				echo "<div id='row'><div id='blockrow' style='float:left;width:54%;border-right:1px solid #c3c3c3;border-top-right-radius:0px; border-bottom-right-radius:0px'>
-				<a href='#' onclick='gestisciInserimentoCentrocampistaSuNome(this);return false;' cognome=\"$cognome_calciatore\" squadra='".strtolower($squadra_calciatore)."' style=\"background-image:url('immagini/m_".strtolower($squadra_calciatore).".png')\" onclick='inserisciCessione(this);return false;' costo='".$costo_calciatore."' codice='".$codice_calciatore."'>".$nome_calciatore."</a>
+				<a href='#' onclick='gestisciInserimentoCentrocampistaSuNome(this);return false;' cognome=\"$cognome_calciatore\" squadra='".strtolower($squadra_calciatore)."' style=\"background-image:url('immagini/".strtolower($squadra_calciatore).".gif');background-position: -30px -15px\" onclick='inserisciCessione(this);return false;' costo='".$costo_calciatore."' codice='".$codice_calciatore."'>".$nome_calciatore."</a>
 				</div>";
 				echo "<div style='float:left;width:36%;height:22px;'>
 				$stat_squadra
@@ -317,7 +317,7 @@ if ($_SESSION['valido'] == "SI") {
 				
 		if($ruolo_calciatore == "A" ){
 				echo "<div id='row'><div id='blockrow' style='float:left;width:54%;border-right:1px solid #c3c3c3;border-top-right-radius:0px; border-bottom-right-radius:0px'>
-				<a href='#' onclick='gestisciInserimentoAttaccanteSuNome(this);return false;' cognome=\"$cognome_calciatore\" squadra='".strtolower($squadra_calciatore)."' style=\"background-image:url('immagini/m_".strtolower($squadra_calciatore).".png')\" onclick='inserisciCessione(this);return false;' costo='".$costo_calciatore."' codice='".$codice_calciatore."'>".$nome_calciatore."</a>
+				<a href='#' onclick='gestisciInserimentoAttaccanteSuNome(this);return false;' cognome=\"$cognome_calciatore\" squadra='".strtolower($squadra_calciatore)."' style=\"background-image:url('immagini/".strtolower($squadra_calciatore).".gif');background-position: -30px -15px\" onclick='inserisciCessione(this);return false;' costo='".$costo_calciatore."' codice='".$codice_calciatore."'>".$nome_calciatore."</a>
 				</div>";
 				echo "<div style='float:left;width:36%;height:22px;'>
 				$stat_squadra

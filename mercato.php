@@ -377,7 +377,7 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] != $admin_user) {
 		#<div style='float:left; text-align:center;'>Server time:".date("G:i")."</div>
 		include("./inc/online.php");
 
-		echo "</td></tr><tr><td valign='top' align='left'>
+		echo "</td></tr><tr><td valign='top' width='55%' align='left'>
 		<div class='box_utente_header'>STATO SQUADRA</div>
 		<div class='box_utente_content'>
 		<div id='logoMain' style='float:right'><img src='immagini/loghi/$outente.jpg' class='logoMain' /></div>";
@@ -733,9 +733,9 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] != $admin_user) {
 								$partita = explode("-",$linea_file_scontri);
 								echo "<tr ";
 								if($num_partita%2 != 0)echo"bgcolor='#E6E6E6'";else echo"bgcolor='#F3F3F3'";
-								echo "><td align='center'>".$nome_squadra_memo[$nome_posizione[$partita[0]]]."</td>
+								echo "><td align='center' width='50%' style='background-image: url(\"immagini/loghi/".$nome_posizione[$partita[0]]."_min.png\");background-position: -20px -15px;background-repeat: no-repeat'>".$nome_squadra_memo[$nome_posizione[$partita[0]]]."</td>
 								<td align='center'> - </td>
-								<td align='center'>".$nome_squadra_memo[$nome_posizione[$partita[1]]]."</td>
+								<td align='center' width='50%' style='background-image: url(\"immagini/loghi/".$nome_posizione[$partita[1]]."_min.png\");background-position: -20px -15px;background-repeat: no-repeat'>".$nome_squadra_memo[$nome_posizione[$partita[1]]]."</td>
 								</tr>";
 								$num_partita++;
 								$linea_file_scontri = trim(togli_acapo($file_scontri[$num_partita]));
