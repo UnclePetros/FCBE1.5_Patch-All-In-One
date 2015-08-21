@@ -733,9 +733,9 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] != $admin_user) {
 								$partita = explode("-",$linea_file_scontri);
 								echo "<tr ";
 								if($num_partita%2 != 0)echo"bgcolor='#E6E6E6'";else echo"bgcolor='#F3F3F3'";
-								echo "><td align='center' width='50%' style='background-image: url(\"immagini/loghi/".$nome_posizione[$partita[0]]."_min.png\");background-position: -20px -15px;background-repeat: no-repeat'>".$nome_squadra_memo[$nome_posizione[$partita[0]]]."</td>
+								echo "><td align='right' width='50%' style='padding-right: 20px; background-image: url(\"immagini/loghi/".$nome_posizione[$partita[0]]."_min.png\");background-position: -15px -15px;background-repeat: no-repeat'>".$nome_squadra_memo[$nome_posizione[$partita[0]]]."</td>
 								<td align='center'> - </td>
-								<td align='center' width='50%' style='background-image: url(\"immagini/loghi/".$nome_posizione[$partita[1]]."_min.png\");background-position: -20px -15px;background-repeat: no-repeat'>".$nome_squadra_memo[$nome_posizione[$partita[1]]]."</td>
+								<td align='left' width='50%' style='padding-left: 20px; background-image: url(\"immagini/loghi/".$nome_posizione[$partita[1]]."_min.png\");background-position: 105% -15px;background-repeat: no-repeat'>".$nome_squadra_memo[$nome_posizione[$partita[1]]]."</td>
 								</tr>";
 								$num_partita++;
 								$linea_file_scontri = trim(togli_acapo($file_scontri[$num_partita]));
