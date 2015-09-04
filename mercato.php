@@ -693,9 +693,11 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['utente'] != $admin_user) {
 							$dati_scontri = explode("##@@&&", $scontri[$num1]);
 							echo "<tr ";
 							if($num1%2 != 0)echo"bgcolor='#E6E6E6'";else echo"bgcolor='#F3F3F3'";
-							echo "><td align='center'>".$nome_squadra_memo[$dati_scontri[0]]."</td><td align='center'> - </td><td align='center'>".$nome_squadra_memo[$dati_scontri[1]]."</td>
-							<td align='center'>".($voto[$dati_scontri[0]]+$otvoti_bonus_in_casa)." - ".$voto[$dati_scontri[1]]."</td>
-							<td align='center'>".$dati_scontri[2]." - ".$dati_scontri[3]."</td></tr>";
+							echo "><td align='right' style='padding-right: 5px;background-image: url(\"immagini/loghi/".$dati_scontri[0]."_min.png\");background-position: -55px -15px;background-repeat: no-repeat'>";
+							if($dati_scontri[0] == $_SESSION['utente']) echo "<span style='font-weight:bold'>".$nome_squadra_memo[$dati_scontri[0]]."</span>"; else echo $nome_squadra_memo[$dati_scontri[0]];
+							echo "</td><td align='center'> - </td><td align='left' style='padding-left: 5px;background-image: url(\"immagini/loghi/".$dati_scontri[1]."_min.png\");background-position: 145% -15px;background-repeat: no-repeat'>";
+							if($dati_scontri[1] == $_SESSION['utente']) echo "<span style='font-weight:bold'>".$nome_squadra_memo[$dati_scontri[1]]."</span>"; else echo $nome_squadra_memo[$dati_scontri[1]];
+							echo "</td></tr>";
 						} # fine for $num1
 					}
 					elseif($tipo_campionato != "N") {
