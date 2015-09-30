@@ -80,6 +80,7 @@ if ($_SESSION['valido'] == "SI" || $escludi_controllo == "SI") {
 				echo "<table width='100%' cellspacing='1' cellpadding='0' border='0' bgcolor='$sfondo_tab'>";
 				$trovato_classifica = true;
 				$num_squadra = $num_linea+1;
+				$posCl = 0;
 				$linea_file_classifica = trim(togli_acapo($file_classifica[$num_squadra]));
 				while($linea_file_classifica != "#@& fine classifica #@&") {
 					$dati_squadra = explode("##@@&&", $linea_file_classifica);
@@ -143,6 +144,7 @@ if ($_SESSION['valido'] == "SI" || $escludi_controllo == "SI") {
 						}
 					}
 					$num_squadra++;
+					$posCl++;
 					$linea_file_classifica = trim(togli_acapo($file_classifica[$num_squadra]));
 				}
 			}
