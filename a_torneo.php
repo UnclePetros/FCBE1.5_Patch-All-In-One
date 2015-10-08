@@ -399,7 +399,11 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] == 5) {
 			</select></td>
 			<td align="left">La messaggeria pubblica condivide i messaggi con tutti i tornei del sito, mentre se privata &egrave; ristretta al solo torneo di riferimento.</td>
 			</tr>
-
+			<tr>
+            <td>Quota cassa</td>
+            <td align="center"><input name="N_otquotacassa" type="text" value="<?php echo $otquotacassa?>" size="4" maxlength="4" /></td>
+            <td align="left">Indicare la quota che ogni giocatore deve versare</td>
+            </tr>
 			<?php
 			if ($otmercato_libero == "SI") {
 				echo "<tr>
