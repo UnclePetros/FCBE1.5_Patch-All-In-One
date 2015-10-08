@@ -284,7 +284,7 @@ if ($ultima_gio==00) {
 		echo "Cartella remota mancante"; }
 	$timestamp = curl_getinfo($curl, CURLINFO_FILETIME);
 
-if ($timestamp > filemtime($file_voti_localec)) { //otherwise unknown
+if ($timestamp > @filemtime($file_voti_localec)) { //otherwise unknown
     $tabella_giornate .= "<center><br/><span class='evidenziato'>E' disponibile un nuovo file <b>calciatori.txt</b></center></span><br/>";
 } 
 }else {
