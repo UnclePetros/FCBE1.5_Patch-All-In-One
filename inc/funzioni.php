@@ -24,10 +24,11 @@ function ultimo_del_mese($mon,$year)
 function countdown($id,$tempo)
 {
 	
-	echo "<style type='text/css'>@import './inc/jquery.countdown.css';
+	echo "<style type='text/css'>@import './inc/js/jquery.countdown.css';
 	#$id { width: 240px; height: 25px; }
 	</style>
-	<script type='text/javascript' src='./inc/jquery.countdown.js'></script>
+	<script type='text/javascript' src='./inc/js/jquery.plugin.js'></script>
+    <script type='text/javascript' src='./inc/js/jquery.countdown.js'></script>
 	<script type='text/javascript'>
 	function serverTime() { 
     var time = null; 
