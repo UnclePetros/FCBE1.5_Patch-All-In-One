@@ -22,9 +22,9 @@ La patch aggiunge al software le seguenti funzionalità:
 
 ## Changelog
 
-### Ver. 2.97
+#### Ver. 2.97
 - Visualizzazione di parte della miniatura del logo per ciascuna squadra nel box giornata corrente
-### Ver. 2.96
+#### Ver. 2.96
 - Aggiunto il salvataggio di una miniatura del logo caricato
 - Visualizzazione di parte della miniatura del logo per ciascuna squadra nel box prossimo turno
 - Visualizzazione di parte dei loghi delle squadre di serie A nella pagina di gestione formazione, per ogni calciatore in rosa
