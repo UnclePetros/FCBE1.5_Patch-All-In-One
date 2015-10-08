@@ -73,7 +73,7 @@ if ($chiusura_giornata == 1) echo "<a href='./registro_mercato.php' >Registro me
 	} # fine for $num1
 
 	# if ($mercato_libero == "NO" AND $stato_mercato != "I" AND $ultgio != 0) {
-	if ($mercato_libero == "NO" OR $ottipo_calcolo = "S") {
+	if ($mercato_libero == "NO" OR $ottipo_calcolo == "S") {
 		if ($stato_mercato != "I") echo "<a href='./classifica.php' >Classifica</a>".$acapo;
 	}
 
