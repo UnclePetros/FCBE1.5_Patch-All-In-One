@@ -670,15 +670,15 @@ if ($_SESSION['valido'] == "SI" and $_SESSION['permessi'] >= 4) {
 						if ($verifica_num != "" or $punti_posizione[$pos_alta-1] == "") $punti_assegnati = 0;
 						else {
 							$num2 = $pos_alta;
-							$diff = 1;
+							$diff = 0;
 							$punti_set = 0;
 							for($num2; $num2 <= $num_giocatori; $num2++) {
 								if ($voti_posizione[$pos_alta - $diff] == $voti_posizione[$pos_alta]){
-									$punti_assegnati = $punti_posizione[$pos_alta - $diff];
+									$punti_assegnati = $punti_posizione[$pos_alta - $diff - 1];
 									$punti_set = 1;
 								}
 								else {
-									if ($punti_set==0) $punti_assegnati = $punti_posizione[$pos_alta];
+									if ($punti_set==0) $punti_assegnati = $punti_posizione[$pos_alta - 1];
 								}
 								$diff++;
 							}
