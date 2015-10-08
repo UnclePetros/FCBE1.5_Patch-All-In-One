@@ -22,7 +22,7 @@ La patch aggiunge al software le seguenti funzionalità:
 
 ## Changelog
 
-#### Ver. 2.97
+##### Ver. 2.97
 - Visualizzazione di parte della miniatura del logo per ciascuna squadra nel box giornata corrente
 
 ##### Ver. 2.96
@@ -33,37 +33,37 @@ La patch aggiunge al software le seguenti funzionalità:
 
 ##### Ver. 2.93
 - Introdotta temporaneamente la possibilità di visualizzare le formazioni avversarie
-### Ver. 2.92
+##### Ver. 2.92
 - Corretto bug sul ricalcolo della classifica, quando vengono modificati i parametri di configurazione di un torneo
-### Ver. 2.91
+##### Ver. 2.91
 - Corretto bug su timer asta
-### Ver. 2.90
+##### Ver. 2.90
 - Sistemata la gestione panchina fissa
-### Ver. 2.8
+##### Ver. 2.8
 - Corretto bug su identificazione tipo di sostituzione per schema
-### Ver. 2.7
+##### Ver. 2.7
 - Aggiunta gestione sostituzioni per schema nella pagina di "Gestione Formazione"
 - Corretto bug su chiusura file formazione dopo salvataggio
-### Ver. 2.7 (solo ver. 1.6 di FCBE)
+##### Ver. 2.7 (solo ver. 1.6 di FCBE)
 - risolto disallineamenti su variabili di configurazione dei tornei
-### Ver. 2.6
+##### Ver. 2.6
 - risolto bug visualizzazione shoutbox in "Bacheca"
-### Ver. 2.5
+##### Ver. 2.5
 - integrata la patch "Gestione rapida formazioni"
 - aggiunto logica per la gestine del timeout su chiamate a siti, nei file squadra.php, gestione_formazione.php e a_gestione.php
 - risolto problema con ridimensionamento pagina mercato in Chrome
 - risolto bug con posizionamento sezione "TOP 11 di giornata"
-### Ver. 2.4
+##### Ver. 2.4
 - Aggiunta la chat "Shoutbox" in bacheca!
 - Corretto bug su "Calendario Serie A" in menù laterale
-### Ver. 2.3
+##### Ver. 2.3
 - Corretto bug sul salvataggio dati torneo
-### Ver. 2.2
+##### Ver. 2.2
 - Corretto bug sulla visualizzazione delle offerte in "Bacheca"
-### Ver. 2.1
+##### Ver. 2.1
 - aggiunto controllo per l'attivazione delle statistiche squadre, solo a campionato iniziato
 - aggiunti angoli arrotondati ad alcuni box in home page
-### Ver. 2.0
+##### Ver. 2.0
 - Aggiornato, in generale il comparto grafico, con immagini nuove, effetti css, e piccole modifiche ai colori    
 - Aggiunto spazio logo di lega personalizzabile
 - Cambiato l'aspetto grafico del menù laterale "Statistiche" per adattarlo al layout corrente
