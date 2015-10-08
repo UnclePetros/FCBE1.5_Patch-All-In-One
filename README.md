@@ -26,7 +26,7 @@ Decomprimenre il file zip della patch, e sovrascrivere il contenuto a quello att
 
 Aprire il file dati_gen.php, presente nella cartella dati del vostro script, e sovrascrivere con quanto segue la corrispondente sezione del file:
 
-'''php
+```php
 ######################## PATCH ALL-IN-ONE ##################################
 $sfondo_tab						=	'#FFFFFF';
 $sfondo_tab1						=	'#FFFFFF';
@@ -40,7 +40,7 @@ $carattere_size					=	'15px';
 $carattere_colore				=	'#000000';
 $carattere_colore_chiaro			=	'#18045C';
 ######################## PATCH ALL-IN-ONE ##################################
-'''
+```
 
 Buon divertimento!
 
