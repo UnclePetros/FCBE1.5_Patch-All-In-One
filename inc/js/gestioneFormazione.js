@@ -154,17 +154,17 @@ function inserisciDifensore( elem ){
 		do{
 			if($('#avatar'+i).attr('ruolo') == 'D') numd++;
 			if($('#avatar'+i+'_nome').text() == '' && !schierabile_panchina){
-				if(tipoPanchina != 'fissa')
-					schierabile_panchina = true;
-				else{
-					if(panchinaFissaSchema[1] > numd)
-						schierabile_panchina = true;
-				}
+				schierabile_panchina = true;
 				pos = i;
 			}
 			i++;
 		}
 		while(i<=11+numPanchina);
+		
+		if(schierabile_panchina && tipoPanchina == 'fissa'){
+			if(panchinaFissaSchema[1] <= numd)
+				schierabile_panchina = false;
+		}
 		
 		if(schierabile_panchina ){
 			$('#avatar'+pos+'_img').append("<img src='immagini/t_"+$(elem).attr('squadra')+".png'/>");
@@ -268,17 +268,17 @@ function inserisciCentrocampista( elem ){
 		do{
 			if($('#avatar'+i).attr('ruolo') == 'C') numc++;
 			if($('#avatar'+i+'_nome').text() == '' && !schierabile_panchina){
-				if(tipoPanchina != 'fissa')
-					schierabile_panchina = true;
-				else{
-					if(panchinaFissaSchema[2] > numc)
-						schierabile_panchina = true;
-				}
+				schierabile_panchina = true;
 				pos=i;
 			}
 			i++;
 		}
 		while(i<=11+numPanchina);
+		
+		if(schierabile_panchina && tipoPanchina == 'fissa'){
+			if(panchinaFissaSchema[2] <= numc)
+				schierabile_panchina = false;
+		}
 		
 		if(schierabile_panchina ){
 			$('#avatar'+pos+'_img').append("<img src='immagini/t_"+$(elem).attr('squadra')+".png'/>");
@@ -383,17 +383,17 @@ function inserisciAttaccante( elem ){
 		do{
 			if($('#avatar'+i).attr('ruolo') == 'A') numa++;
 			if($('#avatar'+i+'_nome').text() == '' && !schierabile_panchina){
-				if(tipoPanchina != 'fissa')
-					schierabile_panchina = true;
-				else{
-					if(panchinaFissaSchema[3] > numa)
-						schierabile_panchina = true;
-				}
+				schierabile_panchina = true;
 				pos=i;
 			}
 			i++;
 		}
 		while(i<=11+numPanchina);
+		
+		if(schierabile_panchina && tipoPanchina == 'fissa'){
+			if(panchinaFissaSchema[3] <= numa)
+				schierabile_panchina = false;
+		}
 		
 		if(schierabile_panchina){
 			$('#avatar'+pos+'_img').append("<img src='immagini/t_"+$(elem).attr('squadra')+".png'/>");

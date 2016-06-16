@@ -1,18 +1,20 @@
 <?php
 $clock[] = "Inizio ".microtime();
 if ($attiva_log == "SI"){
-	$xx1=$HTTP_SERVER_VARS['SERVER_PORT'];
+	$xx1=$_SERVER['SERVER_PORT'];
 	$giorno = date("d",time()); $mese = date("m",time()); $anno = date("Y",time()); $ora = date("H",time()); $minuto = date("i",time());
-		if ($HTTP_SERVER_VARS['REMOTE_HOST'] == "") $visitatore_info = $_SERVER['REMOTE_ADDR'];
+		if (!isset($_SERVER['REMOTE_HOST']) || $_SERVER['REMOTE_HOST'] == "") $visitatore_info = $_SERVER['REMOTE_ADDR'];
 		else $visitatore_info = $_SERVER['REMOTE_HOST'];
 	$base = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-	$x1="host $REMOTE_ADDR";
-	$x2=$REMOTE_PORT;
+	//$x1="host $visitatore_info";
+	//$x2=$REMOTE_PORT;
 	$date="$giorno-$mese-$anno $ora:$minuto";
-		if ($_SESSION['utente'] == "") $infonome = "Visitatore"; else $infonome = $_SESSION['utente'];
-	$fp = fopen($percorso_cartella_dati."/log".$_SESSION["torneo"].".txt", "a");
-	fwrite($fp, "$date - $infonome - $base:$xx1 - $visitatore_info\n");
-	fclose($fp);
+		if (!isset($_SESSION['utente']) || $_SESSION['utente'] == "") $infonome = "Visitatore"; else $infonome = $_SESSION['utente'];
+	if(isset($_SESSION["torneo"])){
+		$fp = fopen($percorso_cartella_dati."/log".$_SESSION["torneo"].".txt", "a");
+		fwrite($fp, "$date - $infonome - $base:$xx1 - $visitatore_info\n");
+		fclose($fp);
+	}
 }
 
 if (strtoupper(substr(PHP_OS,0,3) == 'WIN')) $acapo = "\r\n";  
@@ -59,7 +61,7 @@ caption {
 	}
 </style>
 <?php
-if ($a_fm == "SI") echo"<link rel='stylesheet' type='text/css' href='./inc/fm_style.css' />".$acapo;
+if (isset($a_fm) && $a_fm == "SI") echo"<link rel='stylesheet' type='text/css' href='./inc/fm_style.css' />".$acapo;
 ?>
 
 <!--[if lt IE 9]>
@@ -101,7 +103,7 @@ $('.clicked').animate({"height": pY + "px"}, 500);
 </script>
 <title><?php echo $titolo_sito; ?></title>
 <!-- CHAT stile facebook -->
-<?php if($_SESSION['valido'] == "SI" and $_SESSION['utente'] != $admin_user) {
+<?php if(isset($_SESSION['valido']) && isset($_SESSION['utente']) && $_SESSION['valido'] == "SI" && $_SESSION['utente'] != $admin_user) {
 	echo "<script type='text/javascript' src='./inc/js/jquery.min.js'></script>";
 	echo "<script type='text/javascript' src='https://static.jappix.com/php/get.php?l=it&amp;t=js&amp;g=mini.xml'></script>";
 	$tornei = @file($percorso_cartella_dati."/tornei.php");
@@ -121,7 +123,7 @@ $('.clicked').animate({"height": pY + "px"}, 500);
    	});
 	</script>";
 }
-elseif($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user){
+elseif(isset($_SESSION['valido']) && $_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user){
 	echo "<script type='text/javascript' src='./inc/js/jquery.min.js'></script>";
 	echo "<script type='text/javascript' src='https://static.jappix.com/php/get.php?l=it&amp;t=js&amp;g=mini.xml'></script>";
 	$tornei = @file($percorso_cartella_dati."/tornei.php");
@@ -146,7 +148,7 @@ elseif($_SESSION['valido'] == "SI" and $_SESSION['utente'] == $admin_user){
 	      MINI_NICKNAME = 'admin';
 	      launchMini(true,false, 'anonymous.jappix.com');
 	   	});
-		</script>";	
+		</script>";
 }
 ?>
 <!-- Fine CHAT stile facebook -->

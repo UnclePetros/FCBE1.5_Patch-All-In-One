@@ -48,22 +48,22 @@ include("./header.php");
 <div class="articoli_s">
 
 <?php
-if (strip_tags($_GET[pagina])) {
-	include("./".$_GET[pagina].".php");
+if (isset($_GET['pagina']) && strip_tags($_GET['pagina'])) {
+	include("./".$_GET['pagina'].".php");
 }
-elseif ($usa_cms == "SI" AND strip_tags($_GET[paginaid])) {
-	pagina(strip_tags($_GET[paginaid]));
+elseif ($usa_cms == "SI" && isset($_GET['paginaid']) && strip_tags($_GET['paginaid'])) {
+	pagina(strip_tags($_GET['paginaid']));
 }
-elseif ($usa_cms == "SI" AND strip_tags($_GET[categoria])) {
-categoria($_GET[categoria]);
+elseif ($usa_cms == "SI" && isset($_GET['categoria']) && strip_tags($_GET['categoria'])) {
+categoria($_GET['categoria']);
 }
-elseif ($usa_cms == "SI" AND strip_tags($_GET[notiziaid])) {
-notizia($_GET[notiziaid], strip_tags(htmlentities($evidenzia)));
+elseif ($usa_cms == "SI" && isset($_GET['notiziaid']) && strip_tags($_GET['notiziaid'])) {
+notizia($_GET['notiziaid'], strip_tags(htmlentities($evidenzia)));
 }
-elseif ($usa_cms == "SI" AND strip_tags($ricerca)) {
+elseif ($usa_cms == "SI" && isset($ricerca) && strip_tags($ricerca)) {
 ricerca(strip_tags(htmlentities($testo)));
 }
-elseif ($usa_cms == "SI" AND $vedi_notizie >= 1) {
+elseif ($usa_cms == "SI" && $vedi_notizie >= 1) {
 echo"<p style='float: left; margin: 10; padding-right: 10px;'>";
 if ($mostra_immagini_in_login == "SI") immagine_casuale('sx',0,0);
 echo "</p>".$acapo;

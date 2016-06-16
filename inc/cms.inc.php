@@ -268,7 +268,7 @@ function gestione_pagine() {
 	Sono registrate <b>$num_news</b> pagine.<br/><br/>Per le pagine contrassegnate come attivo viene creato un link in testata, perci&ograve; si prega di non eccedere con le pagine attive, e verificare il layout del menu.<br/><br/>";
 	do {
 		if ( !$news_list->eol() ) {
-			echo '<a href="'.$PHP_SELF.'?q=4&amp;id='.$pos_count.'"><img src="./immagini/edit_entry.gif" alt="MODIFICA" border="0" /></a>&nbsp;&nbsp;'.'<a href="'.$PHP_SELF.'?q=5&amp;id='.$pos_count.'"><img src="./immagini/delete_entry.gif" alt="ELIMINA" border="0" /></a>&nbsp;&nbsp;';
+			echo '<a href="'.$_SERVER['PHP_SELF'].'?q=4&amp;id='.$pos_count.'"><img src="./immagini/edit_entry.gif" alt="MODIFICA" border="0" /></a>&nbsp;&nbsp;'.'<a href="'.$_SERVER['PHP_SELF'].'?q=5&amp;id='.$pos_count.'"><img src="./immagini/delete_entry.gif" alt="ELIMINA" border="0" /></a>&nbsp;&nbsp;';
 
 			echo $news_data["ptitolo"]." &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;del ".$news_data["data_mod"]." inserito da ".$news_data["putente"]."&nbsp;&nbsp;&nbsp;Pagina attiva:&nbsp;".$news_data["pattivo"]."<br/><br/>";
 			$odd_sign++;
@@ -285,16 +285,16 @@ function gestione_pagine() {
 		if ($start_pos_count == 1 && $pos_count > $news_per_pagina ){
 			$page_break = true;
 			$nav_left =  '';
-			$nav_right = '<a href="'.$PHP_SELF."?q=5&amp;lp=$next_start_pos" . '">seguenti</a>';
+			$nav_right = '<a href="'.$_SERVER['PHP_SELF']."?q=5&amp;lp=$next_start_pos" . '">seguenti</a>';
 		}
 		elseif (($pos_count - $start_pos_count) >= $news_per_pagina && !$news_list->eol()) {
 			$page_break = true;
-			$nav_left =  '<a href="'.$PHP_SELF."?q=5&amp;lp=$prev_start_pos" . '">precedenti</a>';
-			$nav_right = '<a href="'.$PHP_SELF."?q=5&amp;lp=$next_start_pos" . '">seguenti</a>';
+			$nav_left =  '<a href="'.$_SERVER['PHP_SELF']."?q=5&amp;lp=$prev_start_pos" . '">precedenti</a>';
+			$nav_right = '<a href="'.$_SERVER['PHP_SELF']."?q=5&amp;lp=$next_start_pos" . '">seguenti</a>';
 		}
 		elseif ($pos_count > $news_per_pagina && $news_list->eol() ) {
 			$page_break = true;
-			$nav_left =  '<a href="'.$PHP_SELF."?q=5&amp;lp=$prev_start_pos" . '">precedenti</a>';
+			$nav_left =  '<a href="'.$_SERVER['PHP_SELF']."?q=5&amp;lp=$prev_start_pos" . '">precedenti</a>';
 			$nav_right = '';
 		}
 
@@ -673,7 +673,7 @@ function gestione_categorie() {
 	Sono registrate <b>$num_news</b> categorie.<br/><br/>Per le categorie sono inserite come link e descrivono un determinato settore di attivit&agrave;.<br/><br/>";
 	do {
 		if ( !$news_list->eol() ) {
-			echo '<a href="'.$PHP_SELF.'?q=9&amp;id='.$pos_count.'"><img src="./immagini/edit_entry.gif" alt="MODIFICA" border="0" /></a>&nbsp;&nbsp;'.'<a href="'.$PHP_SELF.'?q=10&amp;id='.$pos_count.'"><img src="./immagini/delete_entry.gif" alt="ELIMINA" border="0" /></a>&nbsp;&nbsp;';
+			echo '<a href="'.$_SERVER['PHP_SELF'].'?q=9&amp;id='.$pos_count.'"><img src="./immagini/edit_entry.gif" alt="MODIFICA" border="0" /></a>&nbsp;&nbsp;'.'<a href="'.$_SERVER['PHP_SELF'].'?q=10&amp;id='.$pos_count.'"><img src="./immagini/delete_entry.gif" alt="ELIMINA" border="0" /></a>&nbsp;&nbsp;';
 
 			echo $news_data["ptitolo"]."<br/><br/>";
 			$odd_sign++;
@@ -690,16 +690,16 @@ function gestione_categorie() {
 		if ($start_pos_count == 1 && $pos_count > $news_per_pagina ){
 			$page_break = true;
 			$nav_left =  '';
-			$nav_right = '<a href="'.$PHP_SELF."?q=8&amp;lp=$next_start_pos" . '">seguenti</a>';
+			$nav_right = '<a href="'.$_SERVER['PHP_SELF']."?q=8&amp;lp=$next_start_pos" . '">seguenti</a>';
 		}
 		elseif (($pos_count - $start_pos_count) >= $news_per_pagina && !$news_list->eol()) {
 			$page_break = true;
-			$nav_left =  '<a href="'.$PHP_SELF."?q=8&amp;lp=$prev_start_pos" . '">precedenti</a>';
-			$nav_right = '<a href="'.$PHP_SELF."?q=8&amp;lp=$next_start_pos" . '">seguenti</a>';
+			$nav_left =  '<a href="'.$_SERVER['PHP_SELF']."?q=8&amp;lp=$prev_start_pos" . '">precedenti</a>';
+			$nav_right = '<a href="'.$_SERVER['PHP_SELF']."?q=8&amp;lp=$next_start_pos" . '">seguenti</a>';
 		}
 		elseif ($pos_count > $news_per_pagina && $news_list->eol() ) {
 			$page_break = true;
-			$nav_left =  '<a href="'.$PHP_SELF."?q=8&amp;lp=$prev_start_pos" . '">precedenti</a>';
+			$nav_left =  '<a href="'.$_SERVER['PHP_SELF']."?q=8&amp;lp=$prev_start_pos" . '">precedenti</a>';
 			$nav_right = '';
 		}
 
@@ -710,6 +710,8 @@ function gestione_categorie() {
 
 
 function link_categorie() {
+
+	$acapo = isset($acapo) ? $acapo : '';
 	global $archivio_dati, $categorie_file;
 
 	if ( $archivio_dati == "csvfile" ) {
@@ -1133,16 +1135,16 @@ function gestione_notizie() {
 		if ($start_pos_count == 1 && $pos_count > $news_per_pagina ){
 			$page_break = true;
 			$nav_left =  "";
-			$nav_right = "<a href='".$PHP_SELF."?q=13&amp;lp=".$next_start_pos."'>seguenti</a>";
+			$nav_right = "<a href='".$_SERVER['PHP_SELF']."?q=13&amp;lp=".$next_start_pos."'>seguenti</a>";
 		}
 		elseif (($pos_count - $start_pos_count) >= $news_per_pagina && !$news_list->eol()) {
 			$page_break = true;
-			$nav_left =  "<a href='".$PHP_SELF."?q=13&amp;lp=".$prev_start_pos."'>precedenti</a>";
-			$nav_right = "<a href='".$PHP_SELF."?q=13&amp;lp=".$next_start_pos."'>seguenti</a>";
+			$nav_left =  "<a href='".$_SERVER['PHP_SELF']."?q=13&amp;lp=".$prev_start_pos."'>precedenti</a>";
+			$nav_right = "<a href='".$_SERVER['PHP_SELF']."?q=13&amp;lp=".$next_start_pos."'>seguenti</a>";
 		}
 		elseif ($pos_count > $news_per_pagina && $news_list->eol() ) {
 			$page_break = true;
-			$nav_left =  "<a href='".$PHP_SELF."?q=13&amp;lp=".$prev_start_pos."'>precedenti</a>";
+			$nav_left =  "<a href='".$_SERVER['PHP_SELF']."?q=13&amp;lp=".$prev_start_pos."'>precedenti</a>";
 			$nav_right = "";
 		}
 
@@ -1185,7 +1187,9 @@ function elimina_notizia() {
 
 function notizie() {
 	global $lp, $news_per_pagina, $archivio_dati, $notizie_file;
-
+	
+	$acapo = isset($acapo) ? $acapo : '';
+	
 	if ( $archivio_dati == "csvfile" ) {
 		require_once ( "./inc/csvfile.inc.php" );
 		$lista_notizie			= new csvfile;
@@ -1215,7 +1219,7 @@ function notizie() {
 		if ( !$lista_notizie->eol() )	{
 			if ($news_data["pattivo"] == "SI" ) {
 
-				$news_field = "<div class='articolo_sh'><a href='".$PHP_SELF."?notiziaid=".$pos_count."'>".$news_data["ptitolo"]."</a>
+				$news_field = "<div class='articolo_sh'><a href='".$_SERVER['PHP_SELF']."?notiziaid=".$pos_count."'>".$news_data["ptitolo"]."</a>
 				<div style='float:right;display:inline-block'><img src='./immagini/puntina.png' width='25px'></div>
 				<div style='clear:both'></div>
 				</div>
@@ -1223,12 +1227,15 @@ function notizie() {
 
 				$vedi_news_data = html_entity_decode($news_data["pabstract"]);
 				
-				if (strlen($news_data["ptesto"]) <> 0) $news_continua = "&nbsp;|&nbsp;<a href='".$PHP_SELF."?notiziaid=".$pos_count."'>continua lettura!</a>&nbsp;";
+				$news_continua = '';
+				if (strlen($news_data["ptesto"]) <> 0) $news_continua = "&nbsp;|&nbsp;<a href='".$_SERVER['PHP_SELF']."?notiziaid=".$pos_count."'>continua lettura!</a>&nbsp;";
 
 				$news_field .= "<p align='justify'>$vedi_news_data &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>".$acapo;
 				$data_vis = $news_data["data_mod"];
 				$news_field .= "<div class='date'>";
-				$news_field .="&nbsp;|&nbsp;" .mostra_data($data_vis). "&nbsp;|&nbsp;". $news_data["putente"]. "&nbsp;&nbsp;<a href='".$PHP_SELF."?categoria=".$dati_notizie["pcategoria"]."'>".$dati_notizie["pcategoria"]."</a>$news_continua</div></div>".$acapo;
+				$dati_notizie["pcategoria"] = isset($dati_notizie["pcategoria"]) ? $dati_notizie["pcategoria"] : '';
+				
+				$news_field .="&nbsp;|&nbsp;" .mostra_data($data_vis). "&nbsp;|&nbsp;". $news_data["putente"]. "&nbsp;&nbsp;<a href='".$_SERVER['PHP_SELF']."?categoria=".$dati_notizie["pcategoria"]."'>".$dati_notizie["pcategoria"]."</a>$news_continua</div></div>".$acapo;
 				echo $news_field;
 				$odd_sign++;
 				unset ($vedi_news_data,$news_continua);
@@ -1250,20 +1257,20 @@ function notizie() {
 		{
 			$page_break = true;
 			$nav_left =  "";
-			$nav_right = "<a href='".$PHP_SELF."?lp=".$next_start_pos."'>precedenti</a>";
+			$nav_right = "<a href='".$_SERVER['PHP_SELF']."?lp=".$next_start_pos."'>precedenti</a>";
 		}
 
 		elseif (($pos_count - $start_pos_count) >= $news_per_pagina && !$lista_notizie->eol() )
 		{
 			$page_break = true;
-			$nav_left =  "<a href='".$PHP_SELF."?lp=".$prev_start_pos."'>precedenti</a>";
-			$nav_right = "<a href='".$PHP_SELF."?lp=".$next_start_pos."'>successive</a>";
+			$nav_left =  "<a href='".$_SERVER['PHP_SELF']."?lp=".$prev_start_pos."'>precedenti</a>";
+			$nav_right = "<a href='".$_SERVER['PHP_SELF']."?lp=".$next_start_pos."'>successive</a>";
 		}
 
 		elseif ($pos_count > $news_per_pagina && $lista_notizie->eol() )
 		{
 			$page_break = true;
-			$nav_left =  "<a href='".$PHP_SELF."?lp=".$prev_start_pos."'>successive</a>";
+			$nav_left =  "<a href='".$_SERVER['PHP_SELF']."?lp=".$prev_start_pos."'>successive</a>";
 			$nav_right = "";
 		}
 
@@ -1351,7 +1358,7 @@ function notizia($notiziaid, $evidenzia) {
 			echo "".html_entity_decode($dati_notizie["pabstract"]);		
 		echo "".$vedi_box.$acapo.$plugin_fb."<div class='date'>|&nbsp;"
 		.mostra_data($data_vis)."&nbsp;&nbsp;|&nbsp;".$dati_notizie["putente"]
-		."&nbsp;&nbsp;&nbsp;&nbsp;<small>$notiziaid</small>&nbsp;&nbsp;&nbsp;&nbsp;<a href='".$PHP_SELF."?categoria="
+		."&nbsp;&nbsp;&nbsp;&nbsp;<small>$notiziaid</small>&nbsp;&nbsp;&nbsp;&nbsp;<a href='".$_SERVER['PHP_SELF']."?categoria="
 		.$dati_notizie["pcategoria"]."'>".$dati_notizie["pcategoria"]."</a>&nbsp;&nbsp;$adm_opz</div>".$acapo;
 		echo "</div>".$acapo;
 	}
@@ -1420,7 +1427,7 @@ function ultime_notizie($status) {
 	if ($altri_link) $a = "<b><u>Ultime notizie</u></b>".$altri_link;
 	# else $a = "$n_ultime_notizie, $news_per_pagina";
 	
-	return $a;
+	return isset($a) ? $a : '';
 }
 
 
